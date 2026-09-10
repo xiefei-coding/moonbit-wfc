@@ -1,0 +1,14 @@
+{
+  "date": "2026-09-10T14:00:11.438211+00:00",
+  "command": "moon test --target js --deny-warn",
+  "passed": 10,
+  "failed": 0,
+  "example": "node tools/overlap.mjs overlap-example.json",
+  "exampleExecuted": true,
+  "engineSha256": "e12b2f9567886b14a98f5149bc074ea44fe51638a9f01f0c6c61a0b697c4ee34",
+  "upstreamOracleRun": false,
+  "limits": {
+    "patterns": 30,
+    "waveCells": 256
+  }
+}

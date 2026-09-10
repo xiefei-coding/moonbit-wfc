@@ -6,7 +6,9 @@ import {
 }
 
 // Values
-pub fn solve(Model, Int, Int, seed? : UInt, pins? : Array[(Int, Int)], budget? : Int) -> Solution? raise SolveError
+pub fn learn_overlap(Array[Int], Int, Int, Int, periodic_input? : Bool, symmetry? : Bool) -> OverlapModel raise SolveError
+
+pub fn solve(Model, Int, Int, seed? : UInt, pins? : Array[(Int, Int)], budget? : Int, weights? : Array[Int], periodic? : Bool) -> Solution? raise SolveError
 
 // Errors
 pub suberror SolveError {
@@ -19,6 +21,14 @@ pub(all) struct Model {
   allowed : Array[Array[Int]]
 } derive(@debug.Debug)
 
+pub struct OverlapModel {
+  size : Int
+  patterns : Array[Array[Int]]
+  weights : Array[Int]
+  model : Model
+} derive(@debug.Debug)
+pub fn OverlapModel::generate(Self, Int, Int, seed? : UInt, periodic? : Bool, budget? : Int) -> Array[Int]? raise SolveError
+
 pub struct Solution {
   width : Int
   height : Int
@@ -27,7 +37,7 @@ pub struct Solution {
   backtracks : Int
 } derive(Eq, @debug.Debug)
 pub fn Solution::render(Self, Model) -> String raise SolveError
-pub fn Solution::validate(Self, Model, pins? : Array[(Int, Int)]) -> Bool
+pub fn Solution::validate(Self, Model, pins? : Array[(Int, Int)], periodic? : Bool) -> Bool
 
 // Type aliases
 

@@ -22,6 +22,8 @@ pub struct Solution {
 ///|
 priv struct Search {
   model : Model
+  weights : Array[Int]
+  periodic : Bool
   width : Int
   height : Int
   mut seed : UInt
@@ -55,6 +57,16 @@ fn bits(mask : Int) -> Array[Int] {
 fn Search::neighbor(self : Search, cell : Int, dir : Int) -> Int? {
   let x = cell % self.width
   let y = cell / self.width
+  if self.periodic {
+    return Some(
+      match dir {
+        0 => y * self.width + (x + 1) % self.width
+        1 => (y + 1) % self.height * self.width + x
+        2 => y * self.width + (x + self.width - 1) % self.width
+        _ => (y + self.height - 1) % self.height * self.width + x
+      },
+    )
+  }
   match dir {
     0 => if x + 1 < self.width { Some(cell + 1) } else { None }
     1 => if y + 1 < self.height { Some(cell + self.width) } else { None }
@@ -109,15 +121,23 @@ fn Search::search(
     return None
   }
   let mut selected = -1
-  let mut minimum = 31
+  let mut minimum = 1.0e100
   let mut ties = 0
   for i in 0..<domains.length() {
     let count = bits(domains[i]).length()
-    if count > 1 && count < minimum {
+    let mut sum = 0.0
+    let mut weighted_log = 0.0
+    for tile in bits(domains[i]) {
+      let weight = self.weights[tile].to_double()
+      sum += weight
+      weighted_log += weight * @math.ln(weight)
+    }
+    let entropy = @math.ln(sum) - weighted_log / sum
+    if count > 1 && entropy < minimum {
       selected = i
-      minimum = count
+      minimum = entropy
       ties = 1
-    } else if count > 1 && count == minimum {
+    } else if count > 1 && entropy == minimum {
       ties += 1
       if self.random(ties) == 0 {
         selected = i
@@ -130,7 +150,16 @@ fn Search::search(
   self.decisions += 1
   let choices = bits(domains[selected])
   for i in 0..<choices.length() {
-    let j = i + self.random(choices.length() - i)
+    let mut total = 0
+    for k in i..<choices.length() {
+      total += self.weights[choices[k]]
+    }
+    let mut draw = self.random(total)
+    let mut j = i
+    while j + 1 < choices.length() && draw >= self.weights[choices[j]] {
+      draw -= self.weights[choices[j]]
+      j += 1
+    }
     let temp = choices[i]
     choices[i] = choices[j]
     choices[j] = temp
@@ -154,6 +183,8 @@ pub fn solve(
   seed? : UInt = 1U,
   pins? : Array[(Int, Int)] = [],
   budget? : Int = 1000000,
+  weights? : Array[Int] = [],
+  periodic? : Bool = false,
 ) -> Solution? raise SolveError {
   let count = model.labels.length()
   if width < 1 ||
@@ -166,6 +197,14 @@ pub fn solve(
     model.allowed.length() != count ||
     budget < 1 {
     raise Invalid("invalid model dimensions or budget")
+  }
+  let weights = if weights.is_empty() {
+    Array::make(count, 1)
+  } else {
+    weights.copy()
+  }
+  if weights.length() != count || weights.iter().any(w => w < 1 || w > 1000000) {
+    raise Invalid("one positive weight per tile, maximum 1000000")
   }
   let full = (1 << count) - 1
   for row in model.allowed {
@@ -198,6 +237,8 @@ pub fn solve(
   }
   let state : Search = {
     model,
+    weights,
+    periodic,
     width,
     height,
     seed: if seed == 0U {

@@ -4,6 +4,7 @@ pub fn Solution::validate(
   self : Solution,
   model : Model,
   pins? : Array[(Int, Int)] = [],
+  periodic? : Bool = false,
 ) -> Bool {
   let n = model.labels.length()
   if n < 1 ||
@@ -57,6 +58,16 @@ pub fn Solution::validate(
       },
     ]
     for dir, j in neighbors {
+      let j = if j >= 0 || !periodic {
+        j
+      } else {
+        match dir {
+          0 => y * self.width
+          1 => x
+          2 => y * self.width + self.width - 1
+          _ => (self.height - 1) * self.width + x
+        }
+      }
       if j >= 0 && (model.allowed[tile][dir] & (1 << self.tiles[j])) == 0 {
         return false
       }

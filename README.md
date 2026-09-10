@@ -1,6 +1,6 @@
 # WFC 瓦片生成器
 
-可复现的邻接约束传播、回溯和矛盾报告。本地候选版 0.2.0，供比较和代码审查；尚未作为完整竞赛作品提交。
+可复现的邻接约束传播、回溯和矛盾报告。本地候选版 0.3.0，供比较和代码审查；尚未作为完整竞赛作品提交。
 
 ## 运行
 
@@ -68,3 +68,28 @@ node tools/cli.mjs --file sample.txt --json
 非完整 overlapping model；没有交互式素材导入与大图性能证明。
 
 [可执行 API 示例](README.mbt.md)会随测试运行；[功能边界](FEATURES.md)和[测试说明](TESTING.md)用于独立审查。网页与 CLI 展示示例入口，新 API 的完整使用见可执行示例。
+
+## 从样本生成：重叠模型（0.3.0）
+
+```powershell
+node tools/overlap.mjs overlap-example.json
+```
+
+任务 JSON 包含字符网格 sample、图案尺寸 size、输出 width/height、seed、periodic（输出环绕）和 symmetry（八种旋转镜像）。
+每个 Unicode 字符表示一种符号；样本行必须等宽，不含末尾空行。修改 example 文件即可使用自己的样本。
+MoonBit API `learn_overlap(sample, width, height, size, periodic_input?, symmetry?)` 接受整数颜色/瓦片数组，
+返回去重图案、频率和自动推导的四方向兼容规则；`OverlapModel.generate` 返回精确尺寸的符号数组或 None。
+非周期输出会重建右侧和下侧边缘，周期输出约束首尾接缝。
+现有 `solve` 新增 weights 与 periodic 参数，按 Shannon 熵选择单元、按权重选择图案，保留回溯与工作预算。
+`Solution.validate` 可用 periodic=true 检查环绕边。
+
+本轮 JS 目标 10 项项目测试通过，涵盖全部输出 2×2 图案归属、频率统计、D4 对称、偶数环绕可解/奇数矛盾、
+单单元自邻接、权重偏好及资源拒绝；编译后的示例入口也已实际运行。没有重复运行其他 19 个项目。
+
+### 仍有的差距
+
+受现有位掩码求解器限制，最多 30 种图案、256 个求解单元，超限明确报错，不会静默截断；
+图案尺寸为 1..8，输入最大 256×256。非周期输出的求解单元为 (width-size+1)×(height-size+1)。
+不是大型纹理生产工具；尚缺大量图案的数据结构、PNG 素材导入、上游瓦片 XML/对称描述兼容与大图性能证据。
+权重引导选择不保证单张结果的精确频率，也不保证与上游相同随机种子产生相同图案。
+算法依据 [WaveFunctionCollapse 官方说明](https://github.com/mxgmn/WaveFunctionCollapse)，本地重写，未复制素材。

@@ -6,7 +6,7 @@
 
 ## 尚未达到上游的部分
 
-非完整 overlapping model；没有交互式素材导入与大图性能证明。已有基础能力参见 README 与生成的 `pkg.generated.mbti`。
+已支持受规模限制的 overlapping model：样本学习、频率、D4 对称、重叠邻接与周期输出。仍限制 30 种图案/256 求解单元；没有 PNG 素材导入、上游 XML 瓦片配置兼容与大图性能证明。已有基础能力参见 README 与生成的 `pkg.generated.mbti`。
 
 ## 工程交付范围
 
