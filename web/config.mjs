@@ -1,1 +1,1 @@
-export default {"slug": "wfc", "title": "WFC 瓦片生成器", "description": "可复现的邻接约束传播、回溯和矛盾报告", "source": "https://github.com/mxgmn/WaveFunctionCollapse", "scope": "四方向邻接、约束传播、种子、回溯、预设格", "limitations": "从位图学习 overlapping model、权重熵、无限世界", "version": "0.1.0", "example": "2026"};
+export default {"slug": "wfc", "title": "WFC 瓦片生成器", "description": "可复现的邻接约束传播、回溯和矛盾报告", "source": "https://github.com/mxgmn/WaveFunctionCollapse", "scope": "四方向邻接、约束传播、种子、回溯、预设格；增加解的尺寸、tile、pin 和四方向邻接约束验证", "limitations": "非完整 overlapping model；没有交互式素材导入与大图性能证明", "version": "0.2.0", "example": "2026"};

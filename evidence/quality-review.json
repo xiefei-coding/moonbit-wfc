@@ -1,0 +1,47 @@
+{
+  "project": "moonbit-wfc",
+  "timestamp": "2026-09-10T10:41:19.856384+00:00",
+  "exit_code": 0,
+  "backend_test_counts": [
+    [
+      "7",
+      "7",
+      "0"
+    ],
+    [
+      "7",
+      "7",
+      "0"
+    ]
+  ],
+  "scope": "Local Windows verify.ps1; remote CI and full upstream conformance not run",
+  "coverage": {
+    "covered": 107,
+    "total": 116,
+    "measurement": "MoonBit instrumentation points, not upstream feature coverage"
+  },
+  "robustness": {
+    "project": "wfc",
+    "seed": 20260910,
+    "cases": 307,
+    "expected_error_responses": 306,
+    "uncaught_exceptions": 0,
+    "scope": "bounded malformed-input robustness, not proof of full language/protocol conformance"
+  },
+  "benchmark": {
+    "project": "wfc",
+    "utc": "2026-09-10T10:41:19.631Z",
+    "runtime": "v24.11.0",
+    "platform": "win32",
+    "cpu": "Intel(R) Core(TM) i7-14700HX",
+    "input_utf8_bytes": 4,
+    "samples": 30,
+    "warmup": 5,
+    "median_ms": 7.984300000000019,
+    "p95_ms": 9.443100000000015,
+    "max_ms": 9.613999999999976,
+    "scope": "JS warm execution of documented example; no cross-project or upstream performance claim"
+  },
+  "remote_ci": "not run",
+  "network_interoperability": "not run"
+}

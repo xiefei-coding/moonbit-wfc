@@ -27,6 +27,7 @@ pub struct Solution {
   backtracks : Int
 } derive(Eq, @debug.Debug)
 pub fn Solution::render(Self, Model) -> String raise SolveError
+pub fn Solution::validate(Self, Model, pins? : Array[(Int, Int)]) -> Bool
 
 // Type aliases
 
