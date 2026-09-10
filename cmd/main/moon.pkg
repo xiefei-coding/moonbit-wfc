@@ -1,0 +1,5 @@
+import {
+  "localreview/wfc" @lib,
+}
+
+pkgtype(kind: "executable")

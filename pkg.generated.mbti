@@ -1,0 +1,33 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "localreview/wfc"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn solve(Model, Int, Int, seed? : UInt, pins? : Array[(Int, Int)], budget? : Int) -> Solution? raise SolveError
+
+// Errors
+pub suberror SolveError {
+  Invalid(String)
+} derive(@debug.Debug)
+
+// Types and methods
+pub(all) struct Model {
+  labels : Array[String]
+  allowed : Array[Array[Int]]
+} derive(@debug.Debug)
+
+pub struct Solution {
+  width : Int
+  height : Int
+  tiles : Array[Int]
+  decisions : Int
+  backtracks : Int
+} derive(Eq, @debug.Debug)
+pub fn Solution::render(Self, Model) -> String raise SolveError
+
+// Type aliases
+
+// Traits
