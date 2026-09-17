@@ -1,0 +1,10 @@
+{
+  "patterns": 4096,
+  "validatedUniqueColorPixels": 256,
+  "maxCellOutput": 65536,
+  "iterativeSearchDecisions": 65536,
+  "overPatternAndStateLimitsRejected": true,
+  "dominantWeightRemovalSolved": true,
+  "elapsedMs": 475.09450000000004,
+  "scope": "independent source-coordinate checks, not upstream compatibility for >256 colors"
+}

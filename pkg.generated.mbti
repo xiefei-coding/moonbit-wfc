@@ -6,9 +6,17 @@ import {
 }
 
 // Values
+pub fn evaluate_json(String) -> String
+
+pub fn expand_tiles(Array[TileDefinition], Int, Array[(String, String)], subset? : Array[String]) -> TiledModel raise SolveError
+
 pub fn learn_overlap(Array[Int], Int, Int, Int, periodic_input? : Bool, symmetry? : Bool) -> OverlapModel raise SolveError
 
+pub fn learn_patterns(Array[Int], Int, Int, Int, periodic_input? : Bool, symmetry? : Int) -> PatternModel raise SolveError
+
 pub fn solve(Model, Int, Int, seed? : UInt, pins? : Array[(Int, Int)], budget? : Int, weights? : Array[Int], periodic? : Bool) -> Solution? raise SolveError
+
+pub fn solve_rules(RuleModel, Int, Int, seed? : UInt, pins? : Array[(Int, Int)], restrictions? : Array[(Int, Array[Int])], periodic? : Bool, budget? : Int) -> Solution? raise SolveError
 
 // Errors
 pub suberror SolveError {
@@ -20,6 +28,7 @@ pub(all) struct Model {
   labels : Array[String]
   allowed : Array[Array[Int]]
 } derive(@debug.Debug)
+pub fn Model::to_rules(Self, weights? : Array[Int]) -> RuleModel raise SolveError
 
 pub struct OverlapModel {
   size : Int
@@ -29,15 +38,43 @@ pub struct OverlapModel {
 } derive(@debug.Debug)
 pub fn OverlapModel::generate(Self, Int, Int, seed? : UInt, periodic? : Bool, budget? : Int) -> Array[Int]? raise SolveError
 
+pub struct PatternModel {
+  size : Int
+  patterns : Array[Array[Int]]
+  rules : RuleModel
+} derive(ToJson, @debug.Debug)
+pub fn PatternModel::generate(Self, Int, Int, seed? : UInt, periodic? : Bool, ground? : Bool, pins? : Array[(Int, Int)], budget? : Int) -> Array[Int]? raise SolveError
+
+pub(all) struct RuleModel {
+  labels : Array[String]
+  neighbors : Array[Array[Array[Int]]]
+  weights : Array[Double]
+} derive(ToJson, @debug.Debug)
+
 pub struct Solution {
   width : Int
   height : Int
   tiles : Array[Int]
   decisions : Int
   backtracks : Int
-} derive(Eq, @debug.Debug)
+} derive(Eq, ToJson, @debug.Debug)
 pub fn Solution::render(Self, Model) -> String raise SolveError
 pub fn Solution::validate(Self, Model, pins? : Array[(Int, Int)], periodic? : Bool) -> Bool
+pub fn Solution::validate_rules(Self, RuleModel, pins? : Array[(Int, Int)], periodic? : Bool) -> Bool
+
+pub(all) struct TileDefinition {
+  name : String
+  symmetry : String
+  weight : Double
+  pixels : Array[Array[Int]]
+} derive(ToJson, @debug.Debug)
+
+pub struct TiledModel {
+  rules : RuleModel
+  tiles : Array[Array[Int]]
+  tile_size : Int
+} derive(ToJson, @debug.Debug)
+pub fn TiledModel::render(Self, Solution) -> Array[Int] raise SolveError
 
 // Type aliases
 

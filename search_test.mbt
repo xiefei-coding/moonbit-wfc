@@ -16,7 +16,7 @@ test "single cell no neighbors and dimension limits" {
   assert_eq(@wfc.solve(isolated, 2, 1), None)
   assert_true(
     try {
-      ignore(@wfc.solve(isolated, 257, 1))
+      ignore(@wfc.solve(isolated, 65537, 1))
       false
     } catch {
       _ => true

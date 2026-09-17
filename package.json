@@ -1,0 +1,10 @@
+{
+  "name": "moonbit-wfc-local",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "pngjs": "7.0.0",
+    "@xmldom/xmldom": "0.9.12"
+  }
+}

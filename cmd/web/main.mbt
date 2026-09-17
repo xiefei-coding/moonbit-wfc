@@ -37,3 +37,8 @@ pub fn run(input : String) -> String {
 fn main {
 
 }
+
+///|
+pub fn request(input : String) -> String {
+  @lib.evaluate_json(input)
+}

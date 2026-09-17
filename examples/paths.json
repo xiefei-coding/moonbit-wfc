@@ -1,0 +1,8 @@
+{
+  "xml": "paths.xml",
+  "width": 24,
+  "height": 24,
+  "seed": 37,
+  "periodic": true,
+  "budget": 30000000
+}

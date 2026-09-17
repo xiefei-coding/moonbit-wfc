@@ -30,6 +30,14 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'browser engine test failed'}
   node tools/test-cli.mjs
   if ($LASTEXITCODE -ne 0) {throw 'CLI test failed'}
+  node tools/check-reference.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'official reference replay failed'}
+  node tools/test-generation.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'independent generation checks failed'}
+  node tools/test-capacity.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'capacity checks failed'}
+  node tools/test-runtime.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'PNG XML worker CLI checks failed'}
   node tools/robustness.mjs
   if ($LASTEXITCODE -ne 0) {throw 'robustness failed'}
   node tools/benchmark.mjs

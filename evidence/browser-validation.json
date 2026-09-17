@@ -1,0 +1,24 @@
+{
+  "browser": "Codex In-app Browser",
+  "date": "2026-09-17",
+  "groups": [
+    "Default 64x64 / 246 patterns rendered",
+    "48x48 / 609 patterns rendered and over-state-limit error",
+    "Odd periodic checkerboard reports unsat",
+    "Local PNG file chooser imports 16x16 sample",
+    "Cancel terminates pending run; next generation succeeds",
+    "Save PNG produced actual 48x48 file; all 2304 pixels match compiled engine",
+    "Malformed JSON reports readable error",
+    "390x844 layout has no horizontal overflow"
+  ],
+  "passed": 8,
+  "download": {
+    "name": "wfc-48x48.png",
+    "bytes": 800,
+    "sha256": "94fc212436affb358598b37b659cc535f83e31e57913758e43a5e155fea1b0d5",
+    "pixelsMatched": 2304
+  },
+  "fixedDuringReview": "Malformed cancel button interrupted initialization; corrected before all acceptance actions",
+  "console": "No new errors after corrected reload; initial pre-fix error remains in tab log",
+  "limitation": "In-app download event wait timed out, but file creation and decoded pixels were verified independently; browser color management/hidden RGB preservation not claimed"
+}

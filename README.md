@@ -1,95 +1,64 @@
-# WFC 瓦片生成器
+# WFC 图案工坊 · 0.4.0
 
-可复现的邻接约束传播、回溯和矛盾报告。本地候选版 0.3.0，供比较和代码审查；尚未作为完整竞赛作品提交。
+独立 MoonBit 实现：从 PNG 学习重叠图案，或从瓦片 XML 读取对称与邻接规则，生成可复现的像素图。支持加权熵、传播、迭代回溯、预设格、周期边界，以及可取消的网页与 Node 任务。当前是本地候选版，尚未完成全部上游兼容或性能追平。
 
-## 运行
+## 直接使用
 
-安装 MoonBit 后在本目录执行：
-
-```sh
-moon check
-moon test
-moon run cmd/main
-```
-
-也可在本目录运行 `./verify.ps1` 验证本项目。`pkg.generated.mbti` 是真实工具链生成的公共 API。命名空间 `localreview` 仅用于本地，正式发布前应替换为申请人的账号。
-
-## 本版范围
-
-实现目标：四方向邻接、约束传播、种子、回溯、预设格。
-
-未承诺：从位图学习 overlapping model、权重熵、无限世界。
-
-## 来源与实现方式
-
-规格/算法参考：https://github.com/mxgmn/WaveFunctionCollapse。
-
-当前代码是本地新写的 MoonBit 实现，不声称是上游完整移植；未复制上游源代码、词库或测试集。测试输入为本项目新写。MIT 仅适用于本目录原创代码。将来如移植上游文件，需要另行保存其版权声明并核查许可证，不能直接沿用当前说明。
-
-## 审查
-
-先看 `cmd/main/main.mbt` 的实际使用，再看公共 API 与测试文件。联网兼容性、性能数据或官方验收未执行的部分不得从本地单元测试成功推断。
-
-## 下一阶段与明确限制
-
-增加加权熵、overlapping 图像学习、失败原因定位和更大的非递归搜索器；当前四方向规则必须互为逆向关系，最多 30 瓦片与 256 格。种子 0 归一为 1。
-
-本分装包自带 `web/index.html`（用 `start-review.ps1` 启动）。`cmd/web/main.mbt` 为薄适配层，网页调用编译后的真实 MoonBit 模块。
-
-## 独立分装使用
-
-本文件夹可以单独移动或建立仓库，不依赖其他候选项目。浏览器演示已编译，无须安装 MoonBit 即可试用（需要 Python 3）：
+网页附带实际编译的 MoonBit 引擎，不需要安装编译器或 Node 依赖：
 
 ```powershell
 ./start-review.ps1
 ```
 
-打开 http://127.0.0.1:8778/web/ 。修改和测试源码需安装 MoonBit 与 Node.js，再运行 `./verify.ps1`。本机尚未将 MoonBit 加入 PATH 时，可传入 `-MoonPath`。独立包不捆绑编译器。
+打开 http://127.0.0.1:8778/web/ ，选择示例或导入 PNG，然后生成、取消或保存结果。图像处理留在本机。窄屏布局与实际 PNG 下载已检查。
 
-仅含本项目源码和构建产物；没有上传仓库或发布包。`DUPLICATION.md`、`evidence/current-validation.json` 和本次分装清单 提供查重、测试和完整性资料。
+Node 24 文件入口需要安装锁定的 PNG/XML 解析依赖：
 
-## 独立仓库工作流
-
-本目录是该项目后续开发的唯一主仓库，旧批次目录及 ZIP 为历史审查快照。没有 Git remote，没有共享构建目录，没有上级 moon.work。
-
-真实 CLI 支持输入参数、文件和标准输入：
-
-```powershell
-node tools/cli.mjs --help
-node tools/cli.mjs --file sample.txt --json
+```sh
+npm ci --ignore-scripts
+node tools/generate.mjs --job examples/islands.json --out generated-islands.png
+node tools/generate.mjs --job examples/paths.json --out generated-paths.png
 ```
 
-需要安装 MoonBit 后传 `-MoonPath` 或将 moon 加入 PATH；不依赖工作区之外的私有脚本。详见 [TESTING.md](TESTING.md) 和 [CONTRIBUTING.md](CONTRIBUTING.md)。
+输出文件默认不得已存在；显式 `--force` 才替换。`--timeout 30000` 是默认任务期限，最大 300000 ms。没有 `--job` 时读取 UTF-8 JSON 标准输入。路径相对任务文件；`--out` 相对当前目录。退出码 0 为成功、2 为无解、1 为输入/预算/超时/文件错误。无解和预算耗尽是不同结果。
 
-## 本轮功能升级
+[群岛输入](examples/islands.png)、[群岛输出](examples/islands-output.png)、[XML 路径瓦片输出](examples/paths-output.png)均为本项目原创示例。
 
-增加解的尺寸、tile、pin 和四方向邻接约束验证。
+## 任务与公开 API
 
-非完整 overlapping model；没有交互式素材导入与大图性能证明。
+| 入口 | 用途 |
+|---|---|
+| `learn_patterns` / JSON `learn` | 学习整数颜色图案、频率和显式邻接 |
+| `PatternModel.generate` / `overlap` | 重叠模型生成、像素 pins、周期与 ground |
+| `expand_tiles` / `expand` | X、I、\、L、T、F 对称、定向邻接和 unique 位图 |
+| `solve_rules` / `rules` | 显式四方向邻接、浮点权重、格子 pins；MoonBit API 还支持候选集合 restrictions |
+| `Solution.validate_rules` / `validate` | 核验尺寸、每格瓦片、pins 与全部四方向边 |
+| `TiledModel.render` / `tiled` | 按瓦片位图拼接像素结果 |
 
-[可执行 API 示例](README.mbt.md)会随测试运行；[功能边界](FEATURES.md)和[测试说明](TESTING.md)用于独立审查。网页与 CLI 展示示例入口，新 API 的完整使用见可执行示例。
+JSON 参数采用 `sampleWidth`、`sampleHeight`、`periodicInput`、`tileSize` 等 camelCase；生成结果像素为有符号 ARGB32 整数。`symmetry` 是 1..8 的变换数量；旧字符 API 使用 Bool，不能混用。示例任务展示 `png` 和 `xml` 文件形式。数值 `sample` 可直接传像素数组；字符串 `sample` 必须给 `palette`，将每个 Unicode 字符映射到有符号 ARGB32，避免输出透明字符码。
 
-## 从样本生成：重叠模型（0.3.0）
+XML 路径默认是 `name.xml` 对应的 `name/` 目录，普通瓦片读取 `tile.png`，`unique="true"` 读取 `tile 0.png` 等方向位图。支持 `weight`、`symmetry`、`neighbors` 和具名 `subset`。文件名、图像尺寸、未知邻接、实体/DTD 等输入会检查。完整批任务 `samples.xml` 尚未支持。
 
-```powershell
-node tools/overlap.mjs overlap-example.json
-```
+`pins` 是 `[索引,值]` 数组：`overlap` 中索引属于最终输出像素，值为颜色；`rules/tiled` 中索引属于求解格，值为展开后的瓦片 ID。重叠像素 pin 会限制所有覆盖它的图案，包括边缘与周期接缝。
 
-任务 JSON 包含字符网格 sample、图案尺寸 size、输出 width/height、seed、periodic（输出环绕）和 symmetry（八种旋转镜像）。
-每个 Unicode 字符表示一种符号；样本行必须等宽，不含末尾空行。修改 example 文件即可使用自己的样本。
-MoonBit API `learn_overlap(sample, width, height, size, periodic_input?, symmetry?)` 接受整数颜色/瓦片数组，
-返回去重图案、频率和自动推导的四方向兼容规则；`OverlapModel.generate` 返回精确尺寸的符号数组或 None。
-非周期输出会重建右侧和下侧边缘，周期输出约束首尾接缝。
-现有 `solve` 新增 weights 与 periodic 参数，按 Shannon 熵选择单元、按权重选择图案，保留回溯与工作预算。
-`Solution.validate` 可用 periodic=true 检查环绕边。
+旧 `Model` / `solve` 与 `learn_overlap` / `tools/overlap.mjs` 保留：位掩码模型仍最多 30 瓦片，旧学习器最多 30 图案。新路径使用 `RuleModel` / `learn_patterns`，已移除该限制。种子 0 归一为 1；同一版本、输入、种子可复现，不承诺不同版本或上游种子输出相同。
 
-本轮 JS 目标 10 项项目测试通过，涵盖全部输出 2×2 图案归属、频率统计、D4 对称、偶数环绕可解/奇数矛盾、
-单单元自邻接、权重偏好及资源拒绝；编译后的示例入口也已实际运行。没有重复运行其他 19 个项目。
+## 资源边界
 
-### 仍有的差距
+- 显式模型最多 4096 瓦片/图案，四方向邻接共 4000000 条；必须互为逆向且没有重复邻居。权重有限、正数且不超过 1000000。
+- 求解最多 65536 格，格数 × 瓦片数最多 2000000。4096 图案与最大输出尺寸不能同时取满。
+- 学习图案边长 1..8；输入每边最多 1024、总计 262144 像素；变换累计工作最多 32000000 像素单元。
+- 重叠输出最多 65536 像素。非周期求解格为 `(width-size+1) × (height-size+1)`，仍重建完整右、下边缘。瓦片渲染最多 4000000 像素，单瓦片边长最多 256。
+- PNG 输入最多 16 MiB；XML 最多 2 MiB；CLI JSON 最多 16 MiB（核心字符串入口为 16000000 个 UTF-16 单元）。Node Worker 默认 30 秒且限制旧生代堆；计算预算不是严格墙钟或进程总内存上限。
 
-受现有位掩码求解器限制，最多 30 种图案、256 个求解单元，超限明确报错，不会静默截断；
-图案尺寸为 1..8，输入最大 256×256。非周期输出的求解单元为 (width-size+1)×(height-size+1)。
-不是大型纹理生产工具；尚缺大量图案的数据结构、PNG 素材导入、上游瓦片 XML/对称描述兼容与大图性能证据。
-权重引导选择不保证单张结果的精确频率，也不保证与上游相同随机种子产生相同图案。
-算法依据 [WaveFunctionCollapse 官方说明](https://github.com/mxgmn/WaveFunctionCollapse)，本地重写，未复制素材。
+## 验证与差距
+
+JS/Wasm-GC 各 17 组测试；266 个独立官方模型向量全部一致。另有 384 个三瓦片穷举、512 个二维周期/非周期约束案例、生成图案归属/像素 pins、16384 次加权抽样、4096 图案和 65536 格边界、9 组 PNG/XML/Worker/CLI 集成及 8 组实际网页检查。具体范围和复现步骤见 [TESTING.md](TESTING.md)，指纹见 [evidence/scalable-upgrade.json](evidence/scalable-upgrade.json)。
+
+四组同机计时中，MoonBit JS 中位数约 184–556 ms，C# 约 112–480 ms。随机搜索、边缘表示和计时范围不同；这不能证明性能追平。尚缺完整批任务配置、全部启发式和上游行为、更多真实素材、生产内存/跨平台/长期验证，见 [FEATURES.md](FEATURES.md)。
+
+## 来源和本地工作流
+
+算法与对称约定参考 [mxgmn/WaveFunctionCollapse](https://github.com/mxgmn/WaveFunctionCollapse)，固定参考提交 `de7d22e705e816b62b4d613199d0463820fcaef3`。生产代码是本地 MoonBit 重写；独立测试在仓库外编译未修改的官方 C# 核心，不捆绑其源码、二进制或素材。PNG/XML 依赖有各自许可证，以 `package-lock.json` 和包内声明为准。
+
+安装 MoonBit、Node 24、Python 3/Pillow 后运行 `./verify.ps1`；编译器不在 PATH 可指定 `-MoonPath`。公共 API 由 `moon info` 生成，可执行示例在 [README.mbt.md](README.mbt.md)。本仓库可独立移动与构建，不引用相邻项目。仅本地提交，无 Git remote，未上传、发布或提交比赛；配置 CI 不等于远端已经运行。历史 evidence 保留原有日期与范围，旧 ZIP/bundle 尚未同步本版。

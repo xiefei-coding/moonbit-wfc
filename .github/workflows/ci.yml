@@ -8,6 +8,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: python -m pip install Pillow==12.3.0
+      - run: npm ci --ignore-scripts
       - name: Install MoonBit
         run: |
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
@@ -25,6 +30,10 @@ jobs:
           cp "$engine" web/engine.mjs
       - run: node tools/test-demo.mjs
       - run: node tools/test-cli.mjs
+      - run: node tools/check-reference.mjs
+      - run: node tools/test-generation.mjs
+      - run: node tools/test-capacity.mjs
+      - run: node tools/test-runtime.mjs
       - run: node tools/robustness.mjs
       - run: node tools/benchmark.mjs
       - uses: actions/upload-artifact@v4

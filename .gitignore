@@ -1,6 +1,7 @@
 _build/
 target/
 .mooncakes/
+node_modules/
 __pycache__/
 evidence/benchmark.json
 evidence/robustness.json

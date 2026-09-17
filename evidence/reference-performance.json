@@ -1,0 +1,318 @@
+{
+  "cpu": "Intel(R) Core(TM) i7-14700HX",
+  "platform": "win32",
+  "node": "v24.11.0",
+  "referenceRuntime": ".NET 9.0.13; Roslyn 4.12; original upstream project targets .NET 10",
+  "commit": "de7d22e705e816b62b4d613199d0463820fcaef3",
+  "warmup": 2,
+  "repeats": 7,
+  "scope": "Same host, sequential processes. Local includes JSON, learning, solving, pixel rendering; C# includes construction and Run, excludes PNG save and harness reflection. Different RNG/search and boundary-wave representation; not identical work or seed-identical images. No memory or cross-platform claim.",
+  "allSuccessfulOutputsCheckedAgainstOfficialPatterns": true,
+  "referenceHarnessSHA256": "8c06ba72a5efc40b99cd1ea7fbf7b0df4666ddc86a0f71359af7058ec68028bb",
+  "cases": [
+    {
+      "name": "archipelago-3",
+      "width": 64,
+      "height": 64,
+      "size": 3,
+      "patterns": 246,
+      "localMedianMs": 436.8654999999999,
+      "referenceMedianMs": 377.6578,
+      "localAllSolved": true,
+      "referenceSolved": 7,
+      "measurements": [
+        {
+          "seed": 19,
+          "localMs": 451.8690000000006,
+          "referenceLearnMs": 8.2702,
+          "referenceSolveMs": 389.4639,
+          "referenceMs": 397.7341,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 20,
+          "localMs": 492.3298999999988,
+          "referenceLearnMs": 6.2543,
+          "referenceSolveMs": 336.0726,
+          "referenceMs": 342.3269,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 21,
+          "localMs": 436.8654999999999,
+          "referenceLearnMs": 5.9096,
+          "referenceSolveMs": 371.7482,
+          "referenceMs": 377.6578,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 22,
+          "localMs": 450.71980000000076,
+          "referenceLearnMs": 5.7917,
+          "referenceSolveMs": 375.8181,
+          "referenceMs": 381.6098,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 23,
+          "localMs": 412.2589000000007,
+          "referenceLearnMs": 6.1791,
+          "referenceSolveMs": 378.2352,
+          "referenceMs": 384.4143,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 24,
+          "localMs": 398.7541999999994,
+          "referenceLearnMs": 5.382,
+          "referenceSolveMs": 357.36,
+          "referenceMs": 362.742,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 25,
+          "localMs": 435.1430999999993,
+          "referenceLearnMs": 6.039,
+          "referenceSolveMs": 345.1762,
+          "referenceMs": 351.2152,
+          "referenceSolved": true,
+          "localSolved": true
+        }
+      ]
+    },
+    {
+      "name": "archipelago-4",
+      "width": 48,
+      "height": 48,
+      "size": 4,
+      "patterns": 609,
+      "localMedianMs": 556.0465000000004,
+      "referenceMedianMs": 479.7356,
+      "localAllSolved": true,
+      "referenceSolved": 7,
+      "measurements": [
+        {
+          "seed": 19,
+          "localMs": 660.7307000000001,
+          "referenceLearnMs": 36.0515,
+          "referenceSolveMs": 462.9787,
+          "referenceMs": 499.0302,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 20,
+          "localMs": 593.7351999999992,
+          "referenceLearnMs": 35.1186,
+          "referenceSolveMs": 422.2462,
+          "referenceMs": 457.3648,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 21,
+          "localMs": 583.015800000001,
+          "referenceLearnMs": 33.8656,
+          "referenceSolveMs": 445.87,
+          "referenceMs": 479.7356,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 22,
+          "localMs": 556.0465000000004,
+          "referenceLearnMs": 32.8988,
+          "referenceSolveMs": 482.0013,
+          "referenceMs": 514.9001000000001,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 23,
+          "localMs": 552.7728999999999,
+          "referenceLearnMs": 34.6777,
+          "referenceSolveMs": 467.9975,
+          "referenceMs": 502.6752,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 24,
+          "localMs": 524.2821000000004,
+          "referenceLearnMs": 35.8263,
+          "referenceSolveMs": 440.3195,
+          "referenceMs": 476.1458,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 25,
+          "localMs": 537.3028999999988,
+          "referenceLearnMs": 35.5004,
+          "referenceSolveMs": 413.4253,
+          "referenceMs": 448.9257,
+          "referenceSolved": true,
+          "localSolved": true
+        }
+      ]
+    },
+    {
+      "name": "unique-64",
+      "width": 128,
+      "height": 128,
+      "size": 2,
+      "patterns": 64,
+      "localMedianMs": 466.2507000000005,
+      "referenceMedianMs": 353.48699999999997,
+      "localAllSolved": true,
+      "referenceSolved": 7,
+      "measurements": [
+        {
+          "seed": 19,
+          "localMs": 482.4431000000004,
+          "referenceLearnMs": 0.7295,
+          "referenceSolveMs": 327.0874,
+          "referenceMs": 327.8169,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 20,
+          "localMs": 419.438900000001,
+          "referenceLearnMs": 0.9623,
+          "referenceSolveMs": 375.1484,
+          "referenceMs": 376.1107,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 21,
+          "localMs": 441.96939999999813,
+          "referenceLearnMs": 1.0482,
+          "referenceSolveMs": 394.0728,
+          "referenceMs": 395.121,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 22,
+          "localMs": 551.8058999999994,
+          "referenceLearnMs": 0.8151,
+          "referenceSolveMs": 310.7938,
+          "referenceMs": 311.60889999999995,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 23,
+          "localMs": 456.97899999999936,
+          "referenceLearnMs": 0.8209,
+          "referenceSolveMs": 361.3754,
+          "referenceMs": 362.1963,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 24,
+          "localMs": 481.3184000000001,
+          "referenceLearnMs": 0.7341,
+          "referenceSolveMs": 320.075,
+          "referenceMs": 320.8091,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 25,
+          "localMs": 466.2507000000005,
+          "referenceLearnMs": 0.9659,
+          "referenceSolveMs": 352.5211,
+          "referenceMs": 353.48699999999997,
+          "referenceSolved": true,
+          "localSolved": true
+        }
+      ]
+    },
+    {
+      "name": "island-large",
+      "width": 128,
+      "height": 128,
+      "size": 3,
+      "patterns": 25,
+      "localMedianMs": 183.52799999999843,
+      "referenceMedianMs": 112.1592,
+      "localAllSolved": true,
+      "referenceSolved": 7,
+      "measurements": [
+        {
+          "seed": 19,
+          "localMs": 180.34969999999885,
+          "referenceLearnMs": 0.6346,
+          "referenceSolveMs": 107.9253,
+          "referenceMs": 108.5599,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 20,
+          "localMs": 181.3850999999995,
+          "referenceLearnMs": 1.0559,
+          "referenceSolveMs": 142.8836,
+          "referenceMs": 143.9395,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 21,
+          "localMs": 198.77599999999802,
+          "referenceLearnMs": 1.2971,
+          "referenceSolveMs": 110.8621,
+          "referenceMs": 112.1592,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 22,
+          "localMs": 183.52799999999843,
+          "referenceLearnMs": 0.6468,
+          "referenceSolveMs": 104.1128,
+          "referenceMs": 104.75959999999999,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 23,
+          "localMs": 211.76840000000084,
+          "referenceLearnMs": 0.978,
+          "referenceSolveMs": 158.0592,
+          "referenceMs": 159.0372,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 24,
+          "localMs": 181.72479999999996,
+          "referenceLearnMs": 1.1723,
+          "referenceSolveMs": 147.8379,
+          "referenceMs": 149.0102,
+          "referenceSolved": true,
+          "localSolved": true
+        },
+        {
+          "seed": 25,
+          "localMs": 206.42819999999847,
+          "referenceLearnMs": 0.8262,
+          "referenceSolveMs": 101.0913,
+          "referenceMs": 101.9175,
+          "referenceSolved": true,
+          "localSolved": true
+        }
+      ]
+    }
+  ]
+}

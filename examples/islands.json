@@ -1,0 +1,12 @@
+{
+  "mode": "overlap",
+  "png": "islands.png",
+  "size": 3,
+  "width": 64,
+  "height": 64,
+  "symmetry": 8,
+  "periodicInput": true,
+  "periodic": false,
+  "seed": 17,
+  "budget": 30000000
+}

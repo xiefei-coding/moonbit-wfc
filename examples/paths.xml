@@ -1,0 +1,34 @@
+<set>
+  <tiles>
+    <tile name="grass" symmetry="X" weight="4"/>
+    <tile name="straight" symmetry="I" weight="1"/>
+    <tile name="bend" symmetry="L" weight="1"/>
+  </tiles>
+  <neighbors>
+    <neighbor left="grass 0" right="grass 0"/>
+    <neighbor left="grass 0" right="straight 0"/>
+    <neighbor left="grass 0" right="bend 0"/>
+    <neighbor left="grass 0" right="bend 3"/>
+    <neighbor left="straight 0" right="grass 0"/>
+    <neighbor left="straight 0" right="straight 0"/>
+    <neighbor left="straight 0" right="bend 0"/>
+    <neighbor left="straight 0" right="bend 3"/>
+    <neighbor left="straight 1" right="straight 1"/>
+    <neighbor left="straight 1" right="bend 1"/>
+    <neighbor left="straight 1" right="bend 2"/>
+    <neighbor left="bend 0" right="straight 1"/>
+    <neighbor left="bend 0" right="bend 1"/>
+    <neighbor left="bend 0" right="bend 2"/>
+    <neighbor left="bend 1" right="grass 0"/>
+    <neighbor left="bend 1" right="straight 0"/>
+    <neighbor left="bend 1" right="bend 0"/>
+    <neighbor left="bend 1" right="bend 3"/>
+    <neighbor left="bend 2" right="grass 0"/>
+    <neighbor left="bend 2" right="straight 0"/>
+    <neighbor left="bend 2" right="bend 0"/>
+    <neighbor left="bend 2" right="bend 3"/>
+    <neighbor left="bend 3" right="straight 1"/>
+    <neighbor left="bend 3" right="bend 1"/>
+    <neighbor left="bend 3" right="bend 2"/>
+  </neighbors>
+</set>

@@ -1,0 +1,14 @@
+{
+  "project": "wfc",
+  "utc": "2026-09-17T15:13:34.489Z",
+  "runtime": "v24.11.0",
+  "platform": "win32",
+  "cpu": "Intel(R) Core(TM) i7-14700HX",
+  "input_utf8_bytes": 4,
+  "samples": 30,
+  "warmup": 5,
+  "median_ms": 0.4677000000000078,
+  "p95_ms": 1.4061000000000092,
+  "max_ms": 2.458299999999994,
+  "scope": "JS warm execution of documented example; no cross-project or upstream performance claim"
+}

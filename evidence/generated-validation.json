@@ -1,0 +1,31 @@
+{
+  "generatorFmtInfoIdempotence": true,
+  "checkedFiles": 22,
+  "sourceSHA256": {
+    "cmd/main/main.mbt": "cd2e2791935149df11af89d72d0bb4a4aba62eddbb5e1e7d98d917dbd8f8e426",
+    "cmd/main/pkg.generated.mbti": "f573dd423f41e6d9db0531231194b43578c06a598496e7f15ead6c43fbb1815a",
+    "cmd/web/main.mbt": "bd270d87800830811c3d9747ef05a7ec6c9c53a28654e3a1c34039b78fc21a13",
+    "cmd/web/overlap.mbt": "9d969536911be788fd9bed56b38d3e87329879d7569bfad47378a241b106a85f",
+    "entropy_heap.mbt": "2a49833a5790283bae7712dcde9483004ada8f6c77f99ac697bf900a15db6986",
+    "json_api.mbt": "c203400a0c7c2156c65dca40ab5554cc43e3924739e064162e6900716eaeeefe",
+    "oracle_test.mbt": "4882b10c208f101d36565e21b4148fa865cd42dd38511233acbf00a600680ee4",
+    "overlap.mbt": "badfef5b51723298734fac41649baea6d8bb178294bb1db7fdccb04fb35841ed",
+    "overlap_test.mbt": "bfc3f29f59e4df2af601f2967122e58a7e839351896005cb7c31a49b084f6e02",
+    "pattern_model.mbt": "8cafb9c4fcb21883a252029786179e8b53f9206596a2eb5c789d18e6cd96b6f4",
+    "pkg.generated.mbti": "4cbe7861252d184a515a44c0badb9a6db492d04abc97844810969c2b90ddf4ef",
+    "reference_golden_test.mbt": "899a8c6621d3c747f056f15b7039b4a8daa3bdf976086094bcba7d594b9d703b",
+    "rule_model.mbt": "ff52208332a5959a6a194b00f737a7e432c5b35702e7f98f292064cd47a28341",
+    "search_test.mbt": "00b1dd58a7b611fd4d8379fc3753b0ac3482dd4c8df663a849949d06fd208911",
+    "solver.mbt": "634877d416c75bfd39456df0d95a995da0d2743f80650e2268e67bbdf7597ff0",
+    "solver_test.mbt": "03266c01f3c3f8ea4d879b0fcd1e627e94a131388d56c4937880a3f79da17c54",
+    "tiled_model.mbt": "dfc906586e32f3258f06e3657b51e383adf9681d5412a26e64d8affcd75d2812",
+    "tiled_test.mbt": "7a64c02441b3efb48efd762ed5e60f82f98de6007d91f51420ec28177e7dd8e4",
+    "tools/exhaustive-cases.json": "3ab3785faa29f98c45d47fc57286ac6223e9c8084c701993efd9dbb3ce1e7233",
+    "usability.mbt": "bc3c0280d1beb004d2474567195360f55f5c5bb00bdcd5678775fc1f5e80db8c",
+    "wave_search.mbt": "2386bb247932af195dcf2ba60078388090ae8be95fb8ac99cc7ed7abed590cea",
+    "wide_test.mbt": "85fd977ea210bc6e681679c7f51d3d12782e422799235eadf75a4bf11e31a1ee"
+  },
+  "compiledEngineIdentical": true,
+  "moon": "0.1.20260904",
+  "moonc": "0.10.12"
+}

@@ -21,4 +21,4 @@ test "validate solver result and externally altered tiles" {
 }
 ```
 
-限制：非完整 overlapping model；没有交互式素材导入与大图性能证明。
+此例保留旧 Model 兼容入口。0.4 新增 RuleModel / learn_patterns / expand_tiles；PNG/XML、规模与剩余差距见 README 和 FEATURES。

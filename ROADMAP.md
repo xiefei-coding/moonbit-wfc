@@ -1,11 +1,9 @@
-# 从候选版到参赛版
+# Remaining work
 
-增加加权熵、overlapping 图像学习、失败原因定位和更大的非递归搜索器；当前四方向规则必须互为逆向关系，最多 30 瓦片与 256 格。种子 0 归一为 1。
+1. Implement upstream batch samples.xml, multiple-output workflow and the remaining observation/heuristic options with independent examples.
+2. Add precise contradiction diagnostics, stepping and browser tile-set management; verify ground against the reference separately.
+3. Extend real-world image/tile corpus and compare default/failure behavior. Keep intentional RNG/backtracking differences explicit.
+4. Reduce JS allocation/propagation cost; measure peak memory and additional large/dense cases before extending resource bounds.
+5. Run multi-platform and sustained-workload checks, then align local archives with accepted commits. Local-only authorization remains in force; no upload or publication.
 
-1. 确认用户场景及明确的兼容性范围。
-2. 完成上述核心缺口，用外部实现/真实服务验证。
-3. 增加有代表性的性能与错误输入测试，保留可复现日志。
-4. 根据最终实现重写申报书和 README，填本人命名空间。
-5. 本人审查后再决定 GitHub/GitLink/mooncakes 发布；当前未发布，CI 配置未在远程运行。
-
-当前 CI 安装官方最新工具链；本地验证版本见合集 evidence。正式提交前建议选定并实测固定版本，避免工具链漂移。
+Version 0.4 removes the previous 30-pattern/256-cell restriction for the new RuleModel/PatternModel path, adds PNG/XML workflows and records independent reference evidence. The legacy bitmask API keeps its representational limit. These completed items do not erase the remaining compatibility and maturity work.

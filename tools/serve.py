@@ -14,7 +14,7 @@ class Handler(SimpleHTTPRequestHandler):
     def send_head(self):
         path = Path(self.translate_path(self.path))
         root = Path(self.directory).resolve()
-        if any(part in {'.git', '_build', 'target', '.mooncakes'} for part in path.parts) or not path.resolve().is_relative_to(root):
+        if any(part in {'.git', '_build', 'target', '.mooncakes', 'node_modules'} for part in path.parts) or not path.resolve().is_relative_to(root):
             self.send_error(404)
             return None
         return super().send_head()
