@@ -1,4 +1,4 @@
-name = "localreview/wfc"
+name = "xiefei-coding/wfc"
 
 version = "0.4.0"
 
