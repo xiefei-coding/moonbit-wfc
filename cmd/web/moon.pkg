@@ -1,5 +1,5 @@
 import {
-  "localreview/wfc" @lib,
+  "xiefei-coding/wfc" @lib,
 }
 
 supported_targets = "js"

@@ -1,0 +1,24 @@
+$ C:\Users\uiwcv\Documents\Codex\2026-09-10\ban\work\moon\bin\moon.exe info
+Finished. moon: ran 4 tasks, now up to date
+
+$ C:\Users\uiwcv\Documents\Codex\2026-09-10\ban\work\moon\bin\moon.exe check --deny-warn
+Finished. moon: ran 4 tasks, now up to date
+
+$ C:\Users\uiwcv\Documents\Codex\2026-09-10\ban\work\moon\bin\moon.exe build --target js --deny-warn
+Finished. moon: ran 5 tasks, now up to date
+
+$ C:\Users\uiwcv\Documents\Codex\2026-09-10\ban\work\moon\bin\moon.exe run cmd/main
+~ ~ . . . ~ ~ ~ . ~ . ~ ~ . ^ ^
+. . ~ . ~ . . ~ ~ ~ . ~ ~ . ^ .
+. ~ ~ ~ . . ~ ~ ~ . . . . . . ^
+. . . . . . ~ ~ ~ ~ ~ . ~ . . ^
+~ . ^ ^ ^ ^ . . . . ~ . ~ ~ . .
+. ~ . . . ^ . ~ . ~ . ^ . ~ . ~
+. . ^ . ~ . ~ ~ ~ ~ . . . ~ ~ ~
+^ . . ~ ~ . . . ~ . ^ ^ . ~ . .
+. ~ ~ ~ . . ~ . ~ . ^ . ~ ~ . ^
+~ . . ~ ~ ~ ~ . . ^ . . ~ ~ . ^
+decisions=158, backtracks=0
+
+$ node tools/test-demo.mjs
+wfc: standalone engine passed
