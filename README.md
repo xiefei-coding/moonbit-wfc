@@ -1,5 +1,13 @@
 # WFC 图案工坊 · 0.4.0
 
+## 获取与验证入口
+
+公开源码：[github.com/xiefei-coding/moonbit-wfc](https://github.com/xiefei-coding/moonbit-wfc)；MoonBit 模块名为 `xiefei-coding/wfc`。
+
+从源码运行：`git clone https://github.com/xiefei-coding/moonbit-wfc.git` 后进入该目录，按下文和 [TESTING.md](TESTING.md) 安装所需工具。仓库公开不等于已在 Mooncakes 发布，不承诺 `moon add` 当前可用。
+
+查看 [GitHub Actions](https://github.com/xiefei-coding/moonbit-wfc/actions) 时请核对 run 的 commit SHA；历史 evidence、旧 ZIP 与本地测试不能替代当前提交的 CI 结果。下文保留各版本的验证范围和兼容性限制。
+
 独立 MoonBit 实现：从 PNG 学习重叠图案，或从瓦片 XML 读取对称与邻接规则，生成可复现的像素图。支持加权熵、传播、迭代回溯、预设格、周期边界，以及可取消的网页与 Node 任务。当前是本地候选版，尚未完成全部上游兼容或性能追平。
 
 ## 直接使用
@@ -61,4 +69,4 @@ JS/Wasm-GC 各 17 组测试；266 个独立官方模型向量全部一致。另�
 
 算法与对称约定参考 [mxgmn/WaveFunctionCollapse](https://github.com/mxgmn/WaveFunctionCollapse)，固定参考提交 `de7d22e705e816b62b4d613199d0463820fcaef3`。生产代码是本地 MoonBit 重写；独立测试在仓库外编译未修改的官方 C# 核心，不捆绑其源码、二进制或素材。PNG/XML 依赖有各自许可证，以 `package-lock.json` 和包内声明为准。
 
-安装 MoonBit、Node 24、Python 3/Pillow 后运行 `./verify.ps1`；编译器不在 PATH 可指定 `-MoonPath`。公共 API 由 `moon info` 生成，可执行示例在 [README.mbt.md](README.mbt.md)。本仓库可独立移动与构建，不引用相邻项目。仅本地提交，无 Git remote，未上传、发布或提交比赛；配置 CI 不等于远端已经运行。历史 evidence 保留原有日期与范围，旧 ZIP/bundle 尚未同步本版。
+> 历史开发记录（以下发布/归档状态不代表当前仓库；当前入口见文首）：安装 MoonBit、Node 24、Python 3/Pillow 后运行 `./verify.ps1`；编译器不在 PATH 可指定 `-MoonPath`。公共 API 由 `moon info` 生成，可执行示例在 [README.mbt.md](README.mbt.md)。本仓库可独立移动与构建，不引用相邻项目。仅本地提交，无 Git remote，未上传、发布或提交比赛；配置 CI 不等于远端已经运行。历史 evidence 保留原有日期与范围，旧 ZIP/bundle 尚未同步本版。
