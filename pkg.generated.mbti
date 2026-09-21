@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "localreview/wfc"
+package "xiefei-coding/wfc"
 
 import {
   "moonbitlang/core/debug",
