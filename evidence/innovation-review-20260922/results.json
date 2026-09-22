@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-22",
+  "project": "wfc",
+  "package": "xiefei-coding/wfc",
+  "version": "0.4.0",
+  "code_base_commit_before_materials": "05de4712854f69e27cd0d65ec4d2b6320aebcb2e",
+  "core_checks": [
+    {
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "js"
+      ],
+      "exit": 0,
+      "seconds": 3.08,
+      "log": "wfc-test---target-js.log"
+    },
+    {
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "wasm-gc"
+      ],
+      "exit": 0,
+      "seconds": 3.04,
+      "log": "wfc-test---target-wasm-gc.log"
+    },
+    {
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "js"
+      ],
+      "exit": 0,
+      "seconds": 1.35,
+      "log": "wfc-build---target-js.log"
+    }
+  ],
+  "workflow_checks": [
+    {
+      "command": [
+        "node",
+        "tools/test-runtime.mjs"
+      ],
+      "exit": 0,
+      "seconds": 5.41,
+      "log": "wfc-workflow-0.log"
+    }
+  ],
+  "interpretation": "本轮实际 PNG/XML、工作线程/文件导出和错误/取消路径通过；examples 中输入输出是原创合成瓦片。",
+  "limit": "性能和预算有限，无全部上游 samples.xml/所有输入变体兼容，也没有承诺任何约束都一定有解。",
+  "remote_push_performed": false
+}
