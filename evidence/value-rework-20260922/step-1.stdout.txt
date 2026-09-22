@@ -1,0 +1,1 @@
+{"ok":true,"status":"solved","width":64,"height":64,"patternCount":246,"image":{"path":"{output}\\islands.png","bytes":1124}}

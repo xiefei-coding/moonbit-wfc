@@ -1,0 +1,17 @@
+{
+  "project": "wfc",
+  "title": "带约束的 WFC 瓦片与 PNG 资产生成",
+  "module": "xiefei-coding/wfc",
+  "version": "0.4.0",
+  "repository": "https://github.com/xiefei-coding/moonbit-wfc",
+  "status": "保留候选",
+  "remainingRisk": "算法非原创，不保证任意约束有解，也不把玩具输入当生产游戏资产验收。",
+  "actualUsersClaimed": false,
+  "anonymousCloneVerified": true,
+  "publicHead": "755890a019a774940241ce112d2839ab8f9b0d8a",
+  "defaultBranch": "origin/main",
+  "localChangesPublished": false,
+  "proposalLines": 25,
+  "useCase": "从样例 PNG 生成新瓦片图",
+  "diff": "算法源于 mxgmn/WaveFunctionCollapse，本轮未找到同范围 MoonBit 库。贡献是 MoonBit 求解接口和输入—约束—导出工作流，不是算法发明。"
+}

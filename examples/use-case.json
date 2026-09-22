@@ -1,0 +1,16 @@
+{
+  "title": "从样例 PNG 生成新瓦片图",
+  "scope": "原创合成输入 PNG，使用固定种子；输出为可打开的实际 PNG。",
+  "steps": [
+    {
+      "args": [
+        "tools/generate.mjs",
+        "--job",
+        "examples/islands.json",
+        "--out",
+        "{out}/islands.png"
+      ]
+    }
+  ],
+  "expected": "求解成功并输出新的 PNG；无解/预算耗尽的含义与成功不同。"
+}
