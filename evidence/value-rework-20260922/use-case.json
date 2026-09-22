@@ -63,7 +63,9 @@
     "cmd/main/pkg.generated.mbti": "6080b21754e539eaba31c37fef281cdc36a146f6519d1dd1592f422f45e19777",
     "cmd/web/main.mbt": "bd270d87800830811c3d9747ef05a7ec6c9c53a28654e3a1c34039b78fc21a13",
     "cmd/web/moon.pkg": "5ba51f736a98560839f77957d0cfe0ec80ff78e892d36733bca9f839b2214b7b",
-    "cmd/web/overlap.mbt": "9d969536911be788fd9bed56b38d3e87329879d7569bfad47378a241b106a85f"
+    "cmd/web/overlap.mbt": "9d969536911be788fd9bed56b38d3e87329879d7569bfad47378a241b106a85f",
+    "package.json": "9a151bdabd8beb19c273c88f2fbd3f495d92e614f180e7a3b4246ad9286ff225",
+    "package-lock.json": "f83f2faac5c9d8014e3a2d2cfb69d787ea8f1213b4b0c2ff94169214e8ec0aa4"
   },
   "outputs": [
     {
@@ -85,5 +87,9 @@
   "additionalChecks": null,
   "previousCoreValidation": "evidence/innovation-review-20260922/results.json",
   "note": "New sample execution only; earlier core/reference checks retain their original scope. Command output logs replace the machine-specific temporary directory with {output}; output hashes refer to original bytes.",
-  "sourceHashBasis": "Git-normalized blobs in the delivered source archive. Protocol fixtures are explicitly -text to preserve CRLF; ordinary source line endings normalize to LF."
+  "sourceHashBasis": "Git-normalized blobs in the delivered source archive. Protocol fixtures are explicitly -text to preserve CRLF; ordinary source line endings normalize to LF.",
+  "setup": [
+    "npm ci --ignore-scripts"
+  ],
+  "setupRequiredForPngXml": true
 }

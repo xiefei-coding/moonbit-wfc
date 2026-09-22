@@ -6,7 +6,7 @@
 
 原创合成输入 PNG，使用固定种子；输出为可打开的实际 PNG。
 
-最简运行：先按 README 构建，然后 `node examples/run-use-case.mjs`。它自动创建输出目录并执行下面命令。下列 `{out}` 是运行器替换的实际目录，不是直接输入 shell 的变量；stdin 文件由运行器传递，以避免 Windows 与 POSIX 重定向差异。
+最简运行：先用 `npm ci --ignore-scripts` 安装锁定的 PNG/XML 文件适配依赖，再按 README 构建，然后 `node examples/run-use-case.mjs`。它自动创建输出目录并执行下面命令。下列 `{out}` 是运行器替换的实际目录，不是直接输入 shell 的变量；stdin 文件由运行器传递，以避免 Windows 与 POSIX 重定向差异。
 
 ```text
 node tools/generate.mjs --job examples/islands.json --out {out}/islands.png

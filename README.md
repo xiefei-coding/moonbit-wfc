@@ -15,6 +15,7 @@
 安装 MoonBit 和 Node.js 24，在本仓库根目录运行：
 
 ```sh
+npm ci --ignore-scripts
 moon build --target js
 node -e "require('node:fs').copyFileSync('_build/js/debug/build/cmd/web/web.js','web/engine.mjs')"
 node examples/run-use-case.mjs
@@ -27,6 +28,8 @@ node examples/run-use-case.mjs
 应观察：求解成功并输出新的 PNG；无解/预算耗尽的含义与成功不同。
 
 具体命令和输入路径见 [使用任务](USE-CASE.md) 与 [机器可读流程](examples/use-case.json)。只把这个脚本当复现入口，不把通用运行器计作核心技术贡献。
+
+PNG/XML 文件适配使用锁定版本的 pngjs 7.0.0 与 @xmldom/xmldom 0.9.12，首次运行需要上面的 npm 安装步骤；这些不是 MoonBit 核心求解器的原创实现。
 
 ## 实现与已有项目的关系
 
