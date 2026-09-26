@@ -1,6 +1,7 @@
 ///|
 pub suberror SolveError {
   Invalid(String)
+  BudgetExhausted
 } derive(Debug)
 
 ///|

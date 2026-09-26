@@ -1,0 +1,29 @@
+{
+  "grid": [
+    32,
+    24
+  ],
+  "image": [
+    512,
+    384
+  ],
+  "tiles": 768,
+  "pixels": 196608,
+  "counts": {
+    "0": 106,
+    "1": 543,
+    "3": 64,
+    "2": 55
+  },
+  "walkableConnected": 662,
+  "entrances": [
+    384,
+    415
+  ],
+  "pngSha256": "fb84714bb4f0f6c2563e81350aca45678ad26801eb311ac05892e5176216dc24",
+  "oracle": "Python/Pillow exact sprite reconstruction; explicit edge rules and independent BFS",
+  "limits": [
+    "room floor example, not gameplay validation",
+    "original adjacency rules, Kenney supplies art only"
+  ]
+}

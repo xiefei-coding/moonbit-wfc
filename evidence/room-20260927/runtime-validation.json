@@ -1,0 +1,16 @@
+{
+  "runtime": "v24.11.0",
+  "platform": "win32",
+  "groups": [
+    "PNG exact ARGB and malformed header/CRC bounds",
+    "Independent Pillow RGB RGBA palette gray and 16-bit imports",
+    "Unicode text palette produces visible pixels",
+    "XML strict parsing and tile image loading",
+    "Worker generation and actual tiled PNG rendering",
+    "Cancellation timeout worker cleanup and next job",
+    "No-overwrite and atomic replacement policy",
+    "Real CLI file paths stdout and statuses",
+    "Budget errors remain distinct from unsat"
+  ],
+  "passed": 9
+}

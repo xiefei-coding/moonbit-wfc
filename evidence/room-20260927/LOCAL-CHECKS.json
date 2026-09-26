@@ -1,0 +1,106 @@
+{
+  "utc": "2026-09-26T20:40:17.226283+00:00",
+  "version": "0.5.0",
+  "checks": [
+    {
+      "name": "format",
+      "command": [
+        "moon",
+        "fmt"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "api",
+      "command": [
+        "moon",
+        "info"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "check",
+      "command": [
+        "moon",
+        "check",
+        "--target",
+        "all"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "js",
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "wasm",
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "wasm-gc"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "build",
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "js"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "public-contract",
+      "command": [
+        "node",
+        "tools/test-kenney-room.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "runtime",
+      "command": [
+        "node",
+        "tools/test-runtime.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "generation",
+      "command": [
+        "node",
+        "tools/test-generation.mjs"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "sourceHashPolicy": "LF-normalized source",
+  "sources": {
+    "solver.mbt": "26757b22ea709013e4a8589fcfaea6f5cd9d0739327f0b9aa56741e3c157769f",
+    "wave_search.mbt": "6de7a1eede24beac71173360c218626c903fe0a97c2ad3b7e4edb5a558425050",
+    "rule_model.mbt": "44be5706cb59a310223ae4e2252d53449fc621f8d20ce5dfaa981dae746bf029",
+    "json_api.mbt": "2c4392139a1c9f821cf548f93f0bc9d8d7760f1c4a474836fefef0bd697645db",
+    "constraints_test.mbt": "a9498c4a5985633bef1128b0f2cf365bea3ca1c3b37392bb8b71aa944c448048",
+    "pkg.generated.mbti": "5a9ee14d0827150c1176cfa517041ce75d9c8cba235dfbc1950a8951c7bef118",
+    "moon.mod": "5b8dc8c1ba4e7ea26e3f0a87bfd32799b304246af66b2083946eb0e269df4775",
+    "web/engine.mjs": "dbc35f2ab593479830cc6a0fa1ad43cc573e344b86fc6798c7ff123e80b3692d",
+    "examples/kenney-room.mjs": "c4aaaa42d8be059fad6984c10f927aa15e7de272eca81b941d7dbbc6800c2ac9",
+    "tools/test-kenney-room.mjs": "cd57ffe963e8fe1e683efc3c3dc3fa904142620047619728a1e9dcc259a99e29",
+    "tools/verify-kenney-room.py": "444eac79ed0cf26263a7faba4648368e0cb4a4dbee02710bec31ccf951192ab5"
+  },
+  "limits": [
+    "public CC0 art, original example constraints",
+    "not a complete dungeon or production game",
+    "seed output version-specific",
+    "local only"
+  ]
+}

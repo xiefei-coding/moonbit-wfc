@@ -101,7 +101,19 @@ fn run_request(input : String) -> Json raise {
     }
     (integer(values[0]), integer(values[1]))
   })
+  let restrictions = array(job.get("restrictions").unwrap_or([])).map(pair => {
+    let values = array(pair)
+    if values.length() != 2 {
+      raise Invalid("restriction must be [cell,[tiles]]")
+    }
+    (integer(values[0]), array(values[1]).map(integer))
+  })
   if mode == "learn" || mode == "overlap" {
+    if !restrictions.is_empty() {
+      raise Invalid(
+        "cell restrictions require rules or tiled mode; overlap uses pixel pins",
+      )
+    }
     let sample = array(required(job, "sample")).map(integer)
     let sample_width = integer(required(job, "sampleWidth"))
     let sample_height = integer(required(job, "sampleHeight"))
@@ -195,7 +207,9 @@ fn run_request(input : String) -> Json raise {
     }
     return {
       "ok": true.to_json(),
-      "valid": solution.validate_rules(model, pins~, periodic~).to_json(),
+      "valid": solution
+      .validate_rules(model, pins~, restrictions~, periodic~)
+      .to_json(),
     }
   }
   let solution = solve_rules(
@@ -206,6 +220,7 @@ fn run_request(input : String) -> Json raise {
     periodic~,
     budget~,
     pins~,
+    restrictions~,
   )
   match solution {
     None => { "ok": true.to_json(), "status": "unsat" }
@@ -230,6 +245,12 @@ fn run_request(input : String) -> Json raise {
 /// browser worker. File decoding belongs to the host; solving remains MoonBit.
 pub fn evaluate_json(input : String) -> String {
   (run_request(input) catch {
+    BudgetExhausted =>
+      {
+        "ok": false.to_json(),
+        "status": "budget-exhausted",
+        "error": "search budget exhausted",
+      }
     e => { "ok": false.to_json(), "error": Repr(e).to_string().to_json() }
   }).stringify()
 }

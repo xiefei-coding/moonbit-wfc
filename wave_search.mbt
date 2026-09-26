@@ -34,7 +34,7 @@ priv struct Decision {
 fn WaveSearch::tick(self : WaveSearch) -> Unit raise SolveError {
   self.budget -= 1
   if self.budget < 0 {
-    raise Invalid("search budget exhausted")
+    raise BudgetExhausted
   }
 }
 
@@ -223,6 +223,36 @@ pub fn solve_rules(
   }
   let cells = width * height
   let states = cells * count
+  if pins.length() > 65536 || restrictions.length() > 65536 {
+    raise Invalid("constraint count limit")
+  }
+  // Intersect repeated cell restrictions before touching the wave. Previously
+  // each repeated restriction scanned every tile even after all bans were
+  // already applied, so that work did not consume the propagation budget.
+  let cell_rules : Map[Int, Map[Int, Bool]] = Map([])
+  let mut candidates = 0
+  for (cell, allowed) in restrictions {
+    if cell < 0 || cell >= cells || allowed.length() > 2000000 - candidates {
+      raise Invalid("invalid cell restriction or candidate limit")
+    }
+    candidates += allowed.length()
+    let keep : Map[Int, Bool] = Map([])
+    for tile in allowed {
+      if tile < 0 || tile >= count {
+        raise Invalid("invalid cell restriction")
+      }
+      keep[tile] = true
+    }
+    match cell_rules.get(cell) {
+      None => cell_rules[cell] = keep
+      Some(previous) =>
+        for tile in previous.keys().to_array() {
+          if !keep.contains(tile) {
+            previous.remove(tile)
+          }
+        }
+    }
+  }
   let mut total = 0.0
   let weight_logs = model.weights.map(w => w * @math.ln(w))
   let mut total_log = 0.0
@@ -279,14 +309,10 @@ pub fn solve_rules(
       }
     }
   }
-  for (cell, allowed) in restrictions {
-    if cell < 0 || cell >= cells || allowed.iter().any(t => t < 0 || t >= count) {
-      raise Invalid("invalid cell restriction")
-    }
-    let keep : Map[Int, Bool] = Map([])
-    for tile in allowed {
-      keep[tile] = true
-    }
+  let restricted_cells = cell_rules.keys().to_array()
+  restricted_cells.sort()
+  for cell in restricted_cells {
+    let keep = cell_rules[cell]
     for tile in 0..<count {
       if !keep.contains(tile) {
         self.ban(cell, tile)

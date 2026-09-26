@@ -1,0 +1,20 @@
+{
+  "source": "https://kenney.nl/assets/tiny-dungeon",
+  "version": "1.0",
+  "license": "CC0",
+  "zipSha256": "c109438ab06f65fd80f9b2686a4cf9c7c11dc64444b47333ec71d602f8bb5fc7",
+  "files": {
+    "License.txt": "9f574a2f1f636a3db8a0665ba90212f34e2b5e61ecb533d77c05237766374111",
+    "tile_0037.png": "dff77f0cd9bf86fe3f6ee4ebcb4074c2a30ceba18e5966022b0fc74a339e036d",
+    "tile_0048.png": "63519065228f5f8af6200d979fa54cd7f00650034ceea10a1609203a34b3ff9b",
+    "tile_0049.png": "c4257bfa85878e4d293237cd9a50e72b3e883f721e4fe1c48132514bb93668f2",
+    "tile_0050.png": "af45eaf5658a481cbf5645ed006ea59072e8bcdbe481b15a55204179d291f5c7"
+  },
+  "rulesOrigin": "Original room-floor example rules, not supplied or endorsed by Kenney",
+  "tileIds": [
+    "tile_0037.png wall",
+    "tile_0048.png floor",
+    "tile_0049.png detail-a",
+    "tile_0050.png detail-b"
+  ]
+}

@@ -21,6 +21,7 @@ pub fn solve_rules(RuleModel, Int, Int, seed? : UInt, pins? : Array[(Int, Int)],
 // Errors
 pub suberror SolveError {
   Invalid(String)
+  BudgetExhausted
 } derive(@debug.Debug)
 
 // Types and methods
@@ -60,7 +61,7 @@ pub struct Solution {
 } derive(Eq, ToJson, @debug.Debug)
 pub fn Solution::render(Self, Model) -> String raise SolveError
 pub fn Solution::validate(Self, Model, pins? : Array[(Int, Int)], periodic? : Bool) -> Bool
-pub fn Solution::validate_rules(Self, RuleModel, pins? : Array[(Int, Int)], periodic? : Bool) -> Bool
+pub fn Solution::validate_rules(Self, RuleModel, pins? : Array[(Int, Int)], restrictions? : Array[(Int, Array[Int])], periodic? : Bool) -> Bool
 
 pub(all) struct TileDefinition {
   name : String

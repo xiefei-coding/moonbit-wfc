@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {roomJob} from '../examples/kenney-room.mjs';
+import {execute} from './runtime.mjs';
+const job=await roomJob(),first=await execute(job),second=await execute(job);
+assert(first.ok&&first.status==='solved');assert.deepEqual(first,second);
+const short=await execute({...job,budget:1});
+assert.equal(short.ok,false);assert.equal(short.status,'budget-exhausted');assert(!short.pixels&&!short.solution);
+const unsat=await execute({...job,pins:[...job.pins,[0,1]]});
+assert.equal(unsat.ok,true);assert.equal(unsat.status,'unsat');assert(!unsat.pixels&&!unsat.solution);
+const expanded=await execute({...job,mode:'expand'});
+const valid=await execute({mode:'validate',model:expanded.model.rules,width:job.width,height:job.height,pins:job.pins,restrictions:job.restrictions,tiles:first.solution.tiles});
+assert(valid.ok&&valid.valid);
+const wrong=structuredClone(job.restrictions);wrong.push([job.width+1,[0]]);
+const invalid=await execute({mode:'validate',model:expanded.model.rules,width:job.width,height:job.height,restrictions:wrong,tiles:first.solution.tiles});assert.equal(invalid.valid,false);
+const fractional=await execute({...job,restrictions:[[job.width+1,[1.5]]]});assert.equal(fractional.ok,false);assert.notEqual(fractional.status,'budget-exhausted');
+console.log(JSON.stringify({seed:job.seed,deterministic:true,solved:true,budgetExhaustedDistinct:true,unsatDistinct:true,restrictionValidation:true,decisions:first.solution.decisions,backtracks:first.solution.backtracks}));

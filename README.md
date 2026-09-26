@@ -2,7 +2,22 @@
 
 **本项目仓库：[https://github.com/xiefei-coding/moonbit-wfc](https://github.com/xiefei-coding/moonbit-wfc)**
 
-模块 `xiefei-coding/wfc`，本地版本 **0.4.0**，MIT。当前评审状态：**保留候选**。本文件是当前入口，旧轮次说明与详细用法保存在 [历史/完整使用说明](README-BEFORE-VALUE-REWORK.md)。
+模块 `xiefei-coding/wfc`，本地版本 **0.5.0**，MIT。当前评审状态：**保留候选**。本文件是当前入口，旧轮次说明与详细用法保存在 [历史/完整使用说明](README-BEFORE-VALUE-REWORK.md)。
+
+
+## 0.5.0：公开素材与约束结果契约
+
+[Kenney Tiny Dungeon 1.0](https://kenney.nl/assets/tiny-dungeon) 的四块未改动 CC0 瓦片用于生成 32×24 房间地面图。素材来自 Kenney；边界、两个入口及细节不相邻规则由本例自行定义。MoonBit 核心完成求解和渲染，Node 只处理文件/PNG。公开素材不是客户采用，房间地面图也不是完整地牢或游戏玩法验收。
+
+新增 JSON `restrictions: [[cell, [allowedTileIds]]]` 与解校验接口；重复限制取交集，输入数量有上限。`BudgetExhausted` / `status: "budget-exhausted"` 明确区别于无解；二者均不返回半成品。预算是核心工作计数，不是时间保证。限制按格子排序，因此跨旧版本种子输出不承诺一致。
+
+```sh
+node examples/kenney-room.mjs NEW_DIRECTORY
+python tools/verify-kenney-room.py NEW_DIRECTORY --evidence receipt.json
+node tools/test-kenney-room.mjs
+```
+
+独立 Python/Pillow 逐像素核对 196608 像素，检查 768 格、边界和两个入口，并用 BFS 验证 662 个可行走格连通。规则本身没有承诺自动保证任意图连通；本例的连通性单独验证。来源、许可、种子、容量和命令见 [PUBLIC-ASSET.md](PUBLIC-ASSET.md)，实际回执见 [evidence/room-20260927](evidence/room-20260927)。
 
 ## 解决什么任务
 
@@ -43,7 +58,7 @@ MoonBit 实现模型、传播、熵选择、回溯及解验证；Node/浏览器�
 
 ## 验证与边界
 
-前一轮工程验证实际 PNG/XML、工作线程/文件导出和错误/取消路径通过；examples 中输入输出是原创合成瓦片。
+历史合成输入验证仍保留；本轮另增加上述公开 Kenney 素材工作流。
 
 [上一轮工程验证](evidence/innovation-review-20260922/results.json) 与 [本轮最小任务回执](evidence/value-rework-20260922/use-case.json) 分开。历史参考版本、golden 重放、本机 peer、真实第三方服务端和本次样例是不同证据，不能合并成“全部生产验证”。
 

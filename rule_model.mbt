@@ -142,6 +142,7 @@ pub fn Solution::validate_rules(
   self : Solution,
   model : RuleModel,
   pins? : Array[(Int, Int)] = [],
+  restrictions? : Array[(Int, Array[Int])] = [],
   periodic? : Bool = false,
 ) -> Bool {
   if self.width < 1 ||
@@ -158,8 +159,24 @@ pub fn Solution::validate_rules(
   if self.tiles.iter().any(t => t < 0 || t >= model.labels.length()) {
     return false
   }
+  if pins.length() > 65536 || restrictions.length() > 65536 {
+    return false
+  }
   for (cell, tile) in pins {
     if cell < 0 || cell >= self.tiles.length() || self.tiles[cell] != tile {
+      return false
+    }
+  }
+  let mut candidates = 0
+  for (cell, allowed) in restrictions {
+    if cell < 0 ||
+      cell >= self.tiles.length() ||
+      allowed.length() > 2000000 - candidates {
+      return false
+    }
+    candidates += allowed.length()
+    if allowed.any(t => t < 0 || t >= model.labels.length()) ||
+      !allowed.contains(self.tiles[cell]) {
       return false
     }
   }
