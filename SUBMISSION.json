@@ -5,13 +5,13 @@
   "version": "0.5.0",
   "repository": "https://github.com/xiefei-coding/moonbit-wfc",
   "status": "审核结果未知；本地工程复核完成，待团队同步",
-  "remainingRisk": "算法非原创，不保证任意约束有解，也不把玩具输入当生产游戏资产验收。",
+  "remainingRisk": "规则不保证任意图连通，示例另行验证；预算非时间保证，未证明生产游戏可用",
   "actualUsersClaimed": false,
   "defaultBranch": "origin/main",
   "localChangesPublished": false,
   "proposalLines": 25,
-  "useCase": "从样例 PNG 生成新瓦片图",
-  "diff": "算法源于 mxgmn/WaveFunctionCollapse，本轮未找到同范围 MoonBit 库。贡献是 MoonBit 求解接口和输入—约束—导出工作流，不是算法发明。",
+  "useCase": "以格子允许集合和明确工作预算求解瓦片布局，区分无解与预算耗尽",
+  "diff": "WFC和DeBroglie已有；提供MoonBit限制/求解/校验核心，不把算法或公开素材当原创",
   "historicalAnonymousClone": {
     "publicHead": "755890a019a774940241ce112d2839ab8f9b0d8a",
     "anonymousCloneVerified": true,
@@ -24,5 +24,6 @@
   "currentValidation": "evidence/room-20260927/LOCAL-CHECKS.json",
   "currentEvidence": "evidence/room-20260927/LOCAL-CHECKS.json",
   "metadataReviewedOn": "2026-09-27",
-  "currentEvidenceScope": "Core cell-set restrictions and typed budget exhaustion; CC0 Kenney 768 tiles/196608 pixels independently checked; JS/Wasm 19 each"
+  "currentEvidenceScope": "Core cell-set restrictions and typed budget exhaustion; CC0 Kenney 768 tiles/196608 pixels independently checked; JS/Wasm 19 each",
+  "reviewDecision": "保留约束求解组件"
 }
