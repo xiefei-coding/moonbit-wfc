@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {performance} from 'node:perf_hooks';
+import {request} from '../web/engine.mjs';
+import {parseTileset} from './tileset.mjs';
+const call=job=>JSON.parse(request(JSON.stringify(job)));
+const sample=Array(512*512).fill(7);
+const input={sample,sampleWidth:512,sampleHeight:512,size:1,symmetry:8,width:2,height:2};
+const learned=call({...input,mode:'learn'});
+assert.equal(learned.ok,true);assert.deepEqual(learned.model.rules.weights,[2097152]);
+const generated=call({...input,mode:'overlap'});
+assert.equal(generated.ok,true);assert.deepEqual(generated.pixels,[7,7,7,7]);
+const xml=weight=>`<set><tiles><tile name="one" weight="${weight}"/></tiles></set>`;
+assert.equal(parseTileset(xml(2147483647)).tiles[0].weight,2147483647);
+for(const bad of [2147483648,0,-1,'NaN','Infinity'])assert.throws(()=>parseTileset(xml(bad)));
+const n=4096;
+const model={labels:Array.from({length:n},(_,i)=>String(i)),weights:Array(n).fill(1),neighbors:Array.from({length:n},(_,i)=>Array.from({length:4},()=>[i]))};
+const pinned={mode:'rules',model,width:1,height:1,budget:20000};
+const startSingle=performance.now();const single=call({...pinned,pins:[[0,7]]});const singleMs=performance.now()-startSingle;
+const pins=Array.from({length:65536},()=>[0,7]);
+const startRepeated=performance.now();const repeated=call({...pinned,pins});const repeatedMs=performance.now()-startRepeated;
+assert.equal(repeated.status,'solved');assert.deepEqual(repeated.solution,single.solution);
+pins[1]=[0,8];assert.equal(call({...pinned,pins}).status,'unsat');
+pins[65535]=[1,7];assert.equal(call({...pinned,pins}).ok,false);
+const receipt={passed:true,learnedFrequency:2097152,generatedPixels:generated.pixels,xmlWeightBoundaryChecked:true,repeatedPins:65536,conflictAndInvalidPinsChecked:true,timings:{singleMs,repeatedMs},timingScope:'Local observation only; no machine-dependent speed threshold',node:process.version};
+const index=process.argv.indexOf('--evidence');
+if(index>=0){if(!process.argv[index+1])throw Error('--evidence requires a file path');await fs.writeFile(process.argv[index+1],JSON.stringify(receipt,null,2)+'\n')}
+console.log(JSON.stringify(receipt,null,2));

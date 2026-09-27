@@ -34,6 +34,7 @@ jobs:
       - run: node tools/check-reference.mjs
       - run: node tools/test-generation.mjs
       - run: node tools/test-capacity.mjs
+      - run: node tools/test-model-limits.mjs --evidence evidence/model-limits-ci.json
       - run: node tools/test-runtime.mjs
       - run: node tools/test-kenney-room.mjs
       - run: node examples/kenney-room.mjs /tmp/kenney-room

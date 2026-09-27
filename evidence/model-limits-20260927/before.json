@@ -1,0 +1,49 @@
+{
+  "learned": {
+    "milliseconds": 180.774,
+    "ok": true,
+    "weights": [
+      2097152
+    ]
+  },
+  "generated": {
+    "milliseconds": 194.60090000000002,
+    "value": {
+      "ok": false,
+      "error": "Invalid(\"weights must be finite, positive and at most 1000000\")"
+    }
+  },
+  "singlePin": {
+    "milliseconds": 30.60050000000001,
+    "value": {
+      "ok": true,
+      "status": "solved",
+      "solution": {
+        "width": 1,
+        "height": 1,
+        "tiles": [
+          7
+        ],
+        "decisions": 0,
+        "backtracks": 0
+      }
+    }
+  },
+  "repeatedPins": {
+    "milliseconds": 2679.8050999999996,
+    "value": {
+      "ok": true,
+      "status": "solved",
+      "solution": {
+        "width": 1,
+        "height": 1,
+        "tiles": [
+          7
+        ],
+        "decisions": 0,
+        "backtracks": 0
+      }
+    }
+  },
+  "scope": "Supported-size uniform pattern learning and repeated identical pins; elapsed time is local observation, not a performance gate."
+}

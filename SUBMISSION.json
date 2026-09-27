@@ -2,14 +2,14 @@
   "project": "wfc",
   "title": "带约束的 WFC 瓦片与 PNG 资产生成",
   "module": "xiefei-coding/wfc",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "repository": "https://github.com/xiefei-coding/moonbit-wfc",
   "status": "审核结果未知；本地工程复核完成，待团队同步",
   "remainingRisk": "规则不保证任意图连通，示例另行验证；预算非时间保证，未证明生产游戏可用",
   "actualUsersClaimed": false,
   "defaultBranch": "origin/main",
   "localChangesPublished": false,
-  "proposalLines": 25,
+  "proposalLines": 27,
   "useCase": "以格子允许集合和明确工作预算求解瓦片布局，区分无解与预算耗尽",
   "diff": "WFC和DeBroglie已有；提供MoonBit限制/求解/校验核心，不把算法或公开素材当原创",
   "historicalAnonymousClone": {
@@ -21,9 +21,10 @@
   "license": "MIT",
   "acceptance": "not established",
   "remoteCIRunByThisTask": false,
-  "currentValidation": "evidence/room-20260927/LOCAL-CHECKS.json",
-  "currentEvidence": "evidence/room-20260927/LOCAL-CHECKS.json",
+  "currentValidation": "evidence/model-limits-20260927/LOCAL-CHECKS.json",
+  "currentEvidence": "evidence/model-limits-20260927/LOCAL-CHECKS.json",
   "metadataReviewedOn": "2026-09-27",
-  "currentEvidenceScope": "Core cell-set restrictions and typed budget exhaustion; CC0 Kenney 768 tiles/196608 pixels independently checked; JS/Wasm 19 each",
-  "reviewDecision": "保留约束求解组件"
+  "currentEvidenceScope": "Valid large learned frequencies consumed by solver; repeated pin normalization; JS/Wasm 22 each and focused independent generation/capacity checks",
+  "reviewDecision": "保留约束求解组件",
+  "previousEvidence": "evidence/room-20260927/LOCAL-CHECKS.json"
 }

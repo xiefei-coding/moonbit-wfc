@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "learnedFrequency": 2097152,
+  "generatedPixels": [
+    7,
+    7,
+    7,
+    7
+  ],
+  "xmlWeightBoundaryChecked": true,
+  "repeatedPins": 65536,
+  "conflictAndInvalidPinsChecked": true,
+  "timings": {
+    "singleMs": 49.00080000000003,
+    "repeatedMs": 92.02150000000006
+  },
+  "timingScope": "Local observation only; no machine-dependent speed threshold",
+  "node": "v24.11.0"
+}

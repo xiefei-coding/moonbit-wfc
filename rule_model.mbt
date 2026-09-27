@@ -20,9 +20,13 @@ fn RuleModel::checked(self : RuleModel) -> Unit raise SolveError {
   let sets : Array[Map[Int, Bool]] = []
   for t in 0..<n {
     if self.weights[t] <= 0.0 ||
-      self.weights[t] > 1000000.0 ||
+      self.weights[t] > 2147483647.0 ||
       self.weights[t] != self.weights[t] {
-      raise Invalid("weights must be finite, positive and at most 1000000")
+      // A valid 262144-pixel sample with eight symmetries can produce a
+      // frequency of 2097152. Keep all positive legacy Int weights valid too.
+      // This bound also keeps the aggregate weight and weight*log(weight)
+      // finite for the maximum 4096-pattern model.
+      raise Invalid("weights must be finite, positive and at most 2147483647")
     }
     if self.neighbors[t].length() != 4 {
       raise Invalid("four neighbor lists required")

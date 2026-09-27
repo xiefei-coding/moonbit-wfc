@@ -1,0 +1,12 @@
+{
+  "exhaustiveCases": 384,
+  "successfulBacktrackingCases": 6,
+  "independentPatchChecks": 12,
+  "weightedSamples": 16384,
+  "observedCounts": [
+    1662,
+    4936,
+    9786
+  ],
+  "passed": true
+}

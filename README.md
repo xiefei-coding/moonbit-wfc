@@ -2,8 +2,12 @@
 
 **本项目仓库：[https://github.com/xiefei-coding/moonbit-wfc](https://github.com/xiefei-coding/moonbit-wfc)**
 
-模块 `xiefei-coding/wfc`，本地版本 **0.5.0**，MIT。当前评审状态：**保留候选**。本文件是当前入口，旧轮次说明与详细用法保存在 [历史/完整使用说明](README-BEFORE-VALUE-REWORK.md)。
+模块 `xiefei-coding/wfc`，本地版本 **0.5.1**，MIT。当前评审状态：**保留候选**。本文件是当前入口，旧轮次说明与详细用法保存在 [历史/完整使用说明](README-BEFORE-VALUE-REWORK.md)。
 
+
+## 0.5.1：模型容量与重复固定点修复
+
+修复合法512×512输入、八种变换产生的频次被生成阶段拒绝的问题；学习频次原样保留，求解器和XML入口接受的正权重上限统一为2147483647。重复固定点按格子合并，冲突仍返回无解，非法坐标仍拒绝，避免重复扫描同一域。独立穷举/图案与容量检查继续通过；修复前后及本机计时见 [MODEL-LIMITS](MODEL-LIMITS.md)。
 
 ## 0.5.0：公开素材与约束结果契约
 

@@ -226,6 +226,23 @@ pub fn solve_rules(
   if pins.length() > 65536 || restrictions.length() > 65536 {
     raise Invalid("constraint count limit")
   }
+  // Normalize repeated pins before wave allocation. Identical pins add no
+  // constraint; conflicting pins become one empty domain. Preserve the first
+  // occurrence order so distinct input pins keep their existing ordering.
+  let pinned_tiles : Map[Int, Int] = Map([])
+  let pinned_cells : Array[Int] = []
+  for (cell, tile) in pins {
+    if cell < 0 || cell >= cells || tile < 0 || tile >= count {
+      raise Invalid("invalid pin")
+    }
+    match pinned_tiles.get(cell) {
+      None => {
+        pinned_tiles[cell] = tile
+        pinned_cells.push(cell)
+      }
+      Some(previous) => if previous != tile { pinned_tiles[cell] = -1 }
+    }
+  }
   // Intersect repeated cell restrictions before touching the wave. Previously
   // each repeated restriction scanned every tile even after all bans were
   // already applied, so that work did not consume the propagation budget.
@@ -299,10 +316,8 @@ pub fn solve_rules(
     }
     self.enqueue_entropy(cell)
   }
-  for (cell, tile) in pins {
-    if cell < 0 || cell >= cells || tile < 0 || tile >= count {
-      raise Invalid("invalid pin")
-    }
+  for cell in pinned_cells {
+    let tile = pinned_tiles[cell]
     for other in 0..<count {
       if other != tile {
         self.ban(cell, other)

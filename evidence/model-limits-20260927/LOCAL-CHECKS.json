@@ -1,0 +1,42 @@
+{
+  "capturedUtc": "2026-09-27T06:42:22.654714+00:00",
+  "version": "0.5.1",
+  "localOnly": true,
+  "apiSignaturesChanged": false,
+  "checks": {
+    "moonCheckAll": true,
+    "jsTests": 22,
+    "wasmGcTests": 22,
+    "jsBuild": true,
+    "independentExhaustiveCases": 384,
+    "independentPatchChecks": 12,
+    "weightedSamples": 16384,
+    "capacityPatterns": 4096,
+    "capacityCells": 65536,
+    "xmlWeightBoundary": true
+  },
+  "before": "before.json",
+  "after": "after.json",
+  "focusedHostCheck": "model-limits-after.json",
+  "previousCoreAndPublicAssetEvidence": "../room-20260927/LOCAL-CHECKS.json",
+  "sourceHashPolicy": "LF-normalized UTF-8 source",
+  "sources": {
+    "rule_model.mbt": "ef5d3aaf3260452d7c44cb1ac7b36663ac5258a2456e9f8b1fda9cd864fe103f",
+    "wave_search.mbt": "1809eb92a6282982f4269fbf769537f48956031e04d0f022193fadd70c16bf81",
+    "model_limits_test.mbt": "a020a6af6e1373fdfc83b179ca789e47b3af4cb3084a1b20d92354ee12b1a3bb",
+    "json_api.mbt": "2c4392139a1c9f821cf548f93f0bc9d8d7760f1c4a474836fefef0bd697645db",
+    "pattern_model.mbt": "8cafb9c4fcb21883a252029786179e8b53f9206596a2eb5c789d18e6cd96b6f4",
+    "tools/tileset.mjs": "4fc827fc38731f047f1bf01659bb4268a96ad3a453232fe478d3c0947cc42b1c",
+    "tools/test-model-limits.mjs": "c10db7736a25f8f72cc8f1c8e05c8427b0029a55c6a5d94f3884c7eb8dba1bc9",
+    "tools/test-generation.mjs": "e3ef66438a0904926ae53381b39e9535c4fa0c5a0b4e33957450a28669e887d0",
+    "tools/test-capacity.mjs": "3335655f19d59e3de5980b974fd30f3cde7088244dd4e87be4df5852e155f59d",
+    "web/engine.mjs": "f5f55802f9d8a3aa0b2f236568c68e51500ac1077833402e3c2c4d18f7eba109",
+    "pkg.generated.mbti": "5a9ee14d0827150c1176cfa517041ce75d9c8cba235dfbc1950a8951c7bef118",
+    "moon.mod": "3ac1c5f07438af7312d39eaa1cde49fd7f31982194eecebd8011e2555a71b8b1"
+  },
+  "limits": [
+    "local timing observations only",
+    "operation budget is not wall-clock or process memory limit",
+    "no official contest approval or remote CI claim"
+  ]
+}

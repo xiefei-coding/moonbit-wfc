@@ -25,4 +25,6 @@ const weights=[1,3,6],neighbors=Array.from({length:3},()=>Array.from({length:4},
 for(let seed=1;seed<=128;seed++){const result=call({mode:'rules',model:{labels:['a','b','c'],weights,neighbors},width:16,height:8,seed});for(const tile of result.solution.tiles)counts[tile]++}
 for(let i=0;i<3;i++)assert(Math.abs(counts[i]/16384-weights[i]/10)<0.025);
 const report={exhaustiveCases:cases.length,successfulBacktrackingCases:backtrackingSolutions,independentPatchChecks:generated,weightedSamples:16384,observedCounts:counts,passed:true};
-await fs.writeFile(new URL('../evidence/generation-validation.json',import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+const evidenceIndex=process.argv.indexOf('--evidence');
+if(evidenceIndex>=0&&!process.argv[evidenceIndex+1])throw Error('--evidence requires a file path');
+await fs.writeFile(evidenceIndex>=0?process.argv[evidenceIndex+1]:new URL('../evidence/generation-validation.json',import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));

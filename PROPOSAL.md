@@ -1,7 +1,7 @@
 # 带约束的 WFC 瓦片与 PNG 资产生成 · 修订申报草稿
 
 本项目仓库：https://github.com/xiefei-coding/moonbit-wfc
-模块 / 本地版本：`xiefei-coding/wfc` / `0.5.0`；许可证：MIT。
+模块 / 本地版本：`xiefei-coding/wfc` / `0.5.1`；许可证：MIT。
 修订状态：保留候选；本轮仅本地修订，未推送或提交表单。
 
 ## 任务与选择依据
@@ -12,6 +12,8 @@
 MoonBit 实现模型、传播、熵选择、回溯、集合限制及解验证，预算耗尽为独立类型状态；Node/浏览器提供 PNG/XML 文件、工作线程和取消入口。
 可复现任务：从样例 PNG 生成新瓦片图；按 README 构建后运行 `node examples/run-use-case.mjs`，输入与输出见 USE-CASE.md。
 0.5.0 增加公开 Kenney CC0 瓦片任务：32×24 房间地面图，边界/入口/允许瓦片集合，独立核验 196608 像素及连通性；素材不包含邻接规则，规则由本例定义。详见 PUBLIC-ASSET.md。
+
+0.5.1修复合法学习频次在求解阶段被拒绝及重复固定点的额外扫描；核心容量与坏输入回归见MODEL-LIMITS.md。
 
 ## 原创、复用与差异
 原创实现/参考来源/第三方材料许可按 README、DUPLICATION 与仓库来源说明披露；不将既有协议、算法、词库或规范发明归于本项目。
