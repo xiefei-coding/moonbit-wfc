@@ -23,12 +23,14 @@ pub suberror SolveError {
   Invalid(String)
   BudgetExhausted
 } derive(@debug.Debug)
+pub fn SolveError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
 pub(all) struct Model {
   labels : Array[String]
   allowed : Array[Array[Int]]
 } derive(@debug.Debug)
+pub fn Model::to_repr(Self) -> @debug.Repr
 pub fn Model::to_rules(Self, weights? : Array[Int]) -> RuleModel raise SolveError
 
 pub struct OverlapModel {
@@ -38,6 +40,7 @@ pub struct OverlapModel {
   model : Model
 } derive(@debug.Debug)
 pub fn OverlapModel::generate(Self, Int, Int, seed? : UInt, periodic? : Bool, budget? : Int) -> Array[Int]? raise SolveError
+pub fn OverlapModel::to_repr(Self) -> @debug.Repr
 
 pub struct PatternModel {
   size : Int
@@ -45,12 +48,16 @@ pub struct PatternModel {
   rules : RuleModel
 } derive(ToJson, @debug.Debug)
 pub fn PatternModel::generate(Self, Int, Int, seed? : UInt, periodic? : Bool, ground? : Bool, pins? : Array[(Int, Int)], budget? : Int) -> Array[Int]? raise SolveError
+pub fn PatternModel::to_json(Self) -> Json
+pub fn PatternModel::to_repr(Self) -> @debug.Repr
 
 pub(all) struct RuleModel {
   labels : Array[String]
   neighbors : Array[Array[Array[Int]]]
   weights : Array[Double]
 } derive(ToJson, @debug.Debug)
+pub fn RuleModel::to_json(Self) -> Json
+pub fn RuleModel::to_repr(Self) -> @debug.Repr
 
 pub struct Solution {
   width : Int
@@ -59,7 +66,11 @@ pub struct Solution {
   decisions : Int
   backtracks : Int
 } derive(Eq, ToJson, @debug.Debug)
+pub fn Solution::equal(Self, Self) -> Bool
+pub fn Solution::not_equal(Self, Self) -> Bool
 pub fn Solution::render(Self, Model) -> String raise SolveError
+pub fn Solution::to_json(Self) -> Json
+pub fn Solution::to_repr(Self) -> @debug.Repr
 pub fn Solution::validate(Self, Model, pins? : Array[(Int, Int)], periodic? : Bool) -> Bool
 pub fn Solution::validate_rules(Self, RuleModel, pins? : Array[(Int, Int)], restrictions? : Array[(Int, Array[Int])], periodic? : Bool) -> Bool
 
@@ -69,6 +80,8 @@ pub(all) struct TileDefinition {
   weight : Double
   pixels : Array[Array[Int]]
 } derive(ToJson, @debug.Debug)
+pub fn TileDefinition::to_json(Self) -> Json
+pub fn TileDefinition::to_repr(Self) -> @debug.Repr
 
 pub struct TiledModel {
   rules : RuleModel
@@ -76,6 +89,8 @@ pub struct TiledModel {
   tile_size : Int
 } derive(ToJson, @debug.Debug)
 pub fn TiledModel::render(Self, Solution) -> Array[Int] raise SolveError
+pub fn TiledModel::to_json(Self) -> Json
+pub fn TiledModel::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 
