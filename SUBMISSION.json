@@ -9,7 +9,7 @@
   "actualUsersClaimed": false,
   "defaultBranch": "origin/main",
   "localChangesPublished": false,
-  "proposalLines": 27,
+  "proposalLines": 29,
   "useCase": "以格子允许集合和明确工作预算求解瓦片布局，区分无解与预算耗尽",
   "diff": "WFC和DeBroglie已有；提供MoonBit限制/求解/校验核心，不把算法或公开素材当原创",
   "historicalAnonymousClone": {
@@ -23,7 +23,7 @@
   "remoteCIRunByThisTask": false,
   "currentValidation": "evidence/model-limits-20260927/LOCAL-CHECKS.json",
   "currentEvidence": "evidence/model-limits-20260927/LOCAL-CHECKS.json",
-  "metadataReviewedOn": "2026-09-27",
+  "metadataReviewedOn": "2026-09-28",
   "currentEvidenceScope": "Valid large learned frequencies consumed by solver; repeated pin normalization; JS/Wasm 22 each and focused independent generation/capacity checks",
   "reviewDecision": "保留约束求解组件",
   "previousEvidence": "evidence/room-20260927/LOCAL-CHECKS.json"
