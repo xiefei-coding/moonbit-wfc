@@ -4,7 +4,7 @@
   "module": "xiefei-coding/wfc",
   "version": "0.5.1",
   "repository": "https://github.com/xiefei-coding/moonbit-wfc",
-  "status": "已公开对应版号及成功 CI；本轮材料仅本地修订，赛事审核结果待核实；换题是否批准待核实",
+  "status": "已公开对应版号及成功 CI；本轮材料仅本地修订，赛事审核结果待核实",
   "remainingRisk": "规则不保证任意图连通，示例另行验证；预算非时间保证，未证明生产游戏可用",
   "actualUsersClaimed": false,
   "defaultBranch": "origin/main",
